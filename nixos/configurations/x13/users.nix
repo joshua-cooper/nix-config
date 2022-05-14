@@ -19,6 +19,7 @@
       ../../../home/modules/nvim
       ../../../home/modules/htop
       ../../../home/modules/tmux
+      ../../../home/modules/playerctl
       ../../../home/modules/sway
       ../../../home/modules/kanshi
       ../../../home/modules/alacritty
