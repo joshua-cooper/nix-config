@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   modifier = "Mod4";
@@ -17,7 +17,7 @@ in
     '';
 
     config = {
-      startup = [{
+      startup = lib.optionals config.services.kanshi.enable [{
         command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi";
         always = true;
       }];
