@@ -22,6 +22,7 @@
       ../../../home/modules/sway
       ../../../home/modules/kanshi
       ../../../home/modules/alacritty
+      ../../../home/modules/mpv
     ];
 
     home.packages = with pkgs; [
