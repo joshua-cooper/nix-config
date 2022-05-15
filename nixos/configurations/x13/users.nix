@@ -22,6 +22,7 @@
       ../../../home/modules/playerctl
       ../../../home/modules/sway
       ../../../home/modules/kanshi
+      ../../../home/modules/mako
       ../../../home/modules/alacritty
       ../../../home/modules/mpv
     ];
