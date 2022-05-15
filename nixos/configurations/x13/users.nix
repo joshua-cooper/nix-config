@@ -21,6 +21,7 @@
       ../../../home/modules/tmux
       ../../../home/modules/playerctl
       ../../../home/modules/sway
+      ../../../home/modules/swaylock
       ../../../home/modules/swayidle
       ../../../home/modules/kanshi
       ../../../home/modules/mako
