@@ -55,8 +55,7 @@ in
 
       bars = [{
         id = "main";
-        position = "bottom";
-        mode = "hide";
+        position = "top";
       }];
 
       modes = {
