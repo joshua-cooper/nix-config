@@ -27,6 +27,7 @@
       ../../../home/modules/mako
       ../../../home/modules/alacritty
       ../../../home/modules/mpv
+      ../../../home/modules/zathura
     ];
 
     home.packages = with pkgs; [
