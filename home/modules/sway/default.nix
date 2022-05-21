@@ -91,7 +91,7 @@ in
 
         "${modifier}+f" = "fullscreen toggle";
 
-        "${modifier}+space" = "focus mode toggle";
+        "${modifier}+space" = "focus mode_toggle";
         "${modifier}+shift+space" = "floating toggle";
 
         "${modifier}+bracketleft" = "focus child";
