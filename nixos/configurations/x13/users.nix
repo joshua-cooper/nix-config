@@ -20,6 +20,7 @@
       ../../../home/modules/htop
       ../../../home/modules/tmux
       ../../../home/modules/playerctl
+      ../../../home/modules/gtk
       ../../../home/modules/sway
       ../../../home/modules/swaylock
       ../../../home/modules/swayidle
