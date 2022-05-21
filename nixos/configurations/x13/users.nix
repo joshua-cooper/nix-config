@@ -28,6 +28,7 @@
       ../../../home/modules/alacritty
       ../../../home/modules/mpv
       ../../../home/modules/zathura
+      ../../../home/modules/firefox
     ];
 
     home.packages = with pkgs; [
