@@ -20,7 +20,7 @@
     Service = {
       Type = "dbus";
       BusName = "org.freedesktop.Notifications";
-      ConditionEnvironment = "WAYLAND_DISPLAY";
+      ExecCondition = "${pkgs.runtimeShell} -c '[ -n \"$WAYLAND_DISPLAY\" ]'";
       ExecStart = "${pkgs.mako}/bin/mako";
       ExecReload = "${pkgs.mako}/bin/makoctl reload";
     };
