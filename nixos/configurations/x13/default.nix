@@ -16,6 +16,8 @@
     ../../modules/openssh
     ../../modules/fish
     ../../modules/sway
+    ../../modules/pipewire
+    ../../modules/xdg-desktop-portal
     ../../modules/home-manager
   ];
 
