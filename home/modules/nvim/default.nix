@@ -19,6 +19,10 @@
     withNodeJs = false;
     extraPackages = with pkgs; [ fd ripgrep gitMinimal ];
     plugins = with pkgs.vimPlugins; [
+      # Themes
+      tokyonight-nvim
+      gruvbox-nvim
+      # Features
       editorconfig-vim
       vim-surround
       vim-repeat
