@@ -139,6 +139,13 @@ local lsp = {
     vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
 
     vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(
+      bufnr,
+      "n",
+      "<leader>a",
+      "<cmd>lua vim.lsp.buf.code_action()<cr>",
+      { noremap = true, silent = true }
+    )
 
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {
       group = lsp_group,
@@ -201,6 +208,8 @@ vim.api.nvim_set_keymap("n", "<m-j>", "<c-w>j", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<m-k>", "<c-w>k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<m-l>", "<c-w>l", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("t", "<esc><esc>", "<c-\\><c-n>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader><tab>", "<cmd>buffer #<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>w", "<cmd>write<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>confirm quitall<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>Telescope try_git_files<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>Telescope find_directories<cr>", { noremap = true, silent = true })
