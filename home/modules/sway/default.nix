@@ -2,6 +2,27 @@
 
 let
   modifier = "Mod4";
+
+  brightnessctl = pkgs.writeShellScriptBin "brightnessctl" ''
+    ${pkgs.brightnessctl}/bin/brightnessctl "$@"
+    BRIGHTNESS=$(${pkgs.brightnessctl}/bin/brightnessctl info | grep "Current brightness:" | sed "s/.*(\(.*\))/\1/")
+    ${pkgs.libnotify}/bin/notify-send \
+      -h string:x-canonical-private-synchronous:brightness \
+      -h int:value:"$BRIGHTNESS" \
+      Brightness \
+      "$BRIGHTNESS"
+  '';
+
+  pamixer = pkgs.writeShellScriptBin "pamixer" ''
+    ${pkgs.pamixer}/bin/pamixer "$@"
+    VOLUME=$(${pkgs.pamixer}/bin/pamixer --get-volume)
+    MUTED=$(${pkgs.pamixer}/bin/pamixer --get-mute > /dev/null && echo " (muted)")
+    ${pkgs.libnotify}/bin/notify-send \
+      -h string:x-canonical-private-synchronous:volume \
+      -h int:value:"$VOLUME" \
+      Volume \
+      "$VOLUME%$MUTED"
+  '';
 in
 {
   wayland.windowManager.sway = {
@@ -72,6 +93,11 @@ in
       keybindings = {
         "${modifier}+r" = "mode Resize";
 
+        "--locked XF86MonBrightnessDown" = "exec ${brightnessctl}/bin/brightnessctl set 5%-";
+        "--locked XF86MonBrightnessUp" = "exec ${brightnessctl}/bin/brightnessctl set 5%+";
+        "--locked XF86AudioRaiseVolume" = "exec ${pamixer}/bin/pamixer -i 5";
+        "--locked XF86AudioLowerVolume" = "exec ${pamixer}/bin/pamixer -d 5";
+        "--locked XF86AudioMute" = "exec ${pamixer}/bin/pamixer -t";
         "--locked XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
         "--locked XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
         "--locked XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
