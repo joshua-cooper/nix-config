@@ -105,6 +105,7 @@ in
         "--locked XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
 
         "${modifier}+return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        "${modifier}+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
 
         "${modifier}+tab" = "workspace back_and_forth";
 
