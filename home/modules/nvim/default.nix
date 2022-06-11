@@ -40,6 +40,7 @@
       dhall-vim
       vim-toml
       rust-vim
+      vim-ledger
     ];
     extraConfig = "luafile ${./init.lua}";
   };
