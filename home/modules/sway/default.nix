@@ -35,6 +35,8 @@ in
         lid:on output eDP-1 disable
         lid:off output eDP-1 enable
       }
+
+      for_window [title="Firefox — Sharing Indicator"] kill;
     '';
 
     config = {
