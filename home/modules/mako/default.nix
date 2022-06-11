@@ -7,6 +7,7 @@
     anchor = "bottom-right";
     padding = "10";
     defaultTimeout = 10000;
+    layer = "overlay";
   };
 
   systemd.user.services.mako = {
