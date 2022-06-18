@@ -8,4 +8,6 @@
 
     gtk3.extraConfig.gtk-key-theme-name = "Emacs";
   };
+
+  wayland.windowManager.sway.wrapperFeatures.gtk = true;
 }
