@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   services.kanshi = {
     enable = true;
@@ -20,4 +22,9 @@
       ];
     };
   };
+
+  wayland.windowManager.sway.config.startup = [{
+    command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi";
+    always = true;
+  }];
 }

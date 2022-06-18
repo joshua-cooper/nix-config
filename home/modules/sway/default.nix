@@ -40,11 +40,6 @@ in
     '';
 
     config = {
-      startup = lib.optionals config.services.kanshi.enable [{
-        command = "${pkgs.systemd}/bin/systemctl --user reload-or-restart kanshi";
-        always = true;
-      }];
-
       seat."*".hide_cursor = "5000";
 
       input = {
