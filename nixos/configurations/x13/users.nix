@@ -15,6 +15,7 @@
       ../../../home/modules/git
       ../../../home/modules/gpg
       ../../../home/modules/gpg-agent
+      ../../../home/modules/pinentry
       ../../../home/modules/pass
       ../../../home/modules/nvim
       ../../../home/modules/htop
@@ -27,6 +28,7 @@
       ../../../home/modules/swayidle
       ../../../home/modules/kanshi
       ../../../home/modules/mako
+      ../../../home/modules/bemenu
       ../../../home/modules/alacritty
       ../../../home/modules/mpv
       ../../../home/modules/zathura

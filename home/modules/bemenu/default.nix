@@ -1,0 +1,3 @@
+{
+  pinentry.bemenu.enable = true;
+}
