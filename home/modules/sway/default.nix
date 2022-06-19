@@ -85,10 +85,29 @@ in
           "k" = "resize shrink height 10px";
           "l" = "resize grow width 10px";
         };
+
+        Workspace = {
+          "escape" = "mode default";
+          "return" = "mode default";
+          "1" = "workspace number 1";
+          "2" = "workspace number 2";
+          "3" = "workspace number 3";
+          "4" = "workspace number 4";
+          "5" = "workspace number 5";
+          "6" = "workspace number 6";
+          "7" = "workspace number 7";
+          "8" = "workspace number 8";
+          "9" = "workspace number 9";
+          "h" = "move workspace to left";
+          "j" = "move workspace to down";
+          "k" = "move workspace to up";
+          "l" = "move workspace to right";
+        };
       };
 
       keybindings = {
         "${modifier}+r" = "mode Resize";
+        "${modifier}+w" = "mode Workspace";
 
         "--locked XF86MonBrightnessDown" = "exec ${brightnessctl}/bin/brightnessctl set 5%-";
         "--locked XF86MonBrightnessUp" = "exec ${brightnessctl}/bin/brightnessctl set 5%+";
