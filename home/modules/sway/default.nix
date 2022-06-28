@@ -31,11 +31,6 @@ in
     xwayland = false;
 
     extraConfig = ''
-      bindswitch --locked {
-        lid:on output eDP-1 disable
-        lid:off output eDP-1 enable
-      }
-
       titlebar_border_thickness 2
 
       for_window [title="Firefox — Sharing Indicator"] kill;
