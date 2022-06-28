@@ -28,6 +28,8 @@
         });
     in
     {
+      formatter = eachSystem (system: nixpkgsFor."${system}".nixpkgs-fmt);
+
       devShells = eachSystem (system:
         let
           pkgs = nixpkgsFor."${system}";
