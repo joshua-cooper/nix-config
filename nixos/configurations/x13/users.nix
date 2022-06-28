@@ -35,10 +35,14 @@
       ../../../home/modules/firefox
     ];
 
-    home.packages = with pkgs; [
-      wl-clipboard
-      libnotify
-      imv
-    ];
+    home = {
+      stateVersion = "22.05";
+
+      packages = with pkgs; [
+        wl-clipboard
+        libnotify
+        imv
+      ];
+    };
   };
 }

@@ -25,8 +25,12 @@
       ../../../home/modules/tmux
     ];
 
-    home.packages = with pkgs; [
-      magic-wormhole
-    ];
+    home = {
+      stateVersion = "22.05";
+
+      packages = with pkgs; [
+        magic-wormhole
+      ];
+    };
   };
 }
