@@ -33,6 +33,7 @@
       ../../../home/modules/mpv
       ../../../home/modules/zathura
       ../../../home/modules/firefox
+      ../../../home/modules/themes
     ];
 
     home = {

@@ -29,6 +29,9 @@ vim.o.listchars = "eol: ,tab:→ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨"
 vim.o.fillchars = "fold: ,vert:│,eob:~,msgsep:‾"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.foldmethod = "manual"
+vim.o.termguicolors = true
+
+vim.cmd("colorscheme gruvbox")
 
 -- Highlight on yank
 

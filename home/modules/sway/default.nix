@@ -23,6 +23,113 @@ let
       Volume \
       "$VOLUME%$MUTED"
   '';
+
+  swaymsgThemeCommand = theme: lib.concatMapStringsSep ";" (lib.concatStringsSep " ") [
+    [
+      "client.focused"
+      theme.focused.border
+      theme.focused.background
+      theme.focused.text
+      theme.focused.border
+      theme.focused.border
+    ]
+    [
+      "client.focused_inactive"
+      theme.focusedInactive.border
+      theme.focusedInactive.background
+      theme.focusedInactive.text
+      theme.focusedInactive.border
+      theme.focusedInactive.border
+    ]
+    [
+      "client.focused_tab_title"
+      theme.focusedTabTitle.border
+      theme.focusedTabTitle.background
+      theme.focusedTabTitle.text
+      theme.focusedTabTitle.border
+      theme.focusedTabTitle.border
+    ]
+    [
+      "client.unfocused"
+      theme.unfocused.border
+      theme.unfocused.background
+      theme.unfocused.text
+      theme.unfocused.border
+      theme.unfocused.border
+    ]
+    [
+      "client.urgent"
+      theme.urgent.border
+      theme.urgent.background
+      theme.urgent.text
+      theme.urgent.border
+      theme.urgent.border
+    ]
+  ];
+
+  darkTheme = {
+    focused = {
+      border = "#d65d0e";
+      background = "#282828";
+      text = "#fbf1c7";
+    };
+
+    focusedInactive = {
+      border = "#1d2021";
+      background = "#282828";
+      text = "#fbf1c7";
+    };
+
+    focusedTabTitle = {
+      border = "#d65d0e";
+      background = "#282828";
+      text = "#fbf1c7";
+    };
+
+    unfocused = {
+      border = "#1d2021";
+      background = "#282828";
+      text = "#fbf1c7";
+    };
+
+    urgent = {
+      border = "#cc241d";
+      background = "#282828";
+      text = "#fbf1c7";
+    };
+  };
+
+  lightTheme = {
+    focused = {
+      border = "#d65d0e";
+      background = "#fbf1c7";
+      text = "#282828";
+    };
+
+    focusedInactive = {
+      border = "#f9f5d7";
+      background = "#fbf1c7";
+      text = "#282828";
+    };
+
+    focusedTabTitle = {
+      border = "#d65d0e";
+      background = "#fbf1c7";
+      text = "#282828";
+    };
+
+    unfocused = {
+      border = "#f9f5d7";
+      background = "#fbf1c7";
+      text = "#282828";
+    };
+
+    urgent = {
+      border = "#cc241d";
+      background = "#fbf1c7";
+      text = "#282828";
+    };
+  };
 in
 {
   wayland.windowManager.sway = {
@@ -64,7 +171,7 @@ in
       };
 
       gaps = {
-        inner = 4;
+        inner = 6;
         smartBorders = "on";
       };
 
@@ -172,4 +279,11 @@ in
       };
     };
   };
+
+  themes.scripts.sway = ''
+    case "$THEME" in
+      dark) exec ${pkgs.sway}/bin/swaymsg "${swaymsgThemeCommand darkTheme}" ;;
+      light) exec ${pkgs.sway}/bin/swaymsg "${swaymsgThemeCommand lightTheme}" ;;
+    esac
+  '';
 }
