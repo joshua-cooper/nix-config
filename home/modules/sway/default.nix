@@ -81,8 +81,8 @@ in
           "escape" = "mode default";
           "return" = "mode default";
           "h" = "resize shrink width 10px";
-          "j" = "resize grow height 10px";
-          "k" = "resize shrink height 10px";
+          "j" = "resize shrink height 10px";
+          "k" = "resize grow height 10px";
           "l" = "resize grow width 10px";
         };
 
