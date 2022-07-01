@@ -20,6 +20,7 @@
       set -g renumber-windows on
       set -g set-titles on
 
+      bind s choose-tree -sZO time
       bind b set status
       bind -r P swap-window -t -1 \; select-window -t -1
       bind -r N swap-window -t +1 \; select-window -t +1
