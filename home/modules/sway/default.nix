@@ -158,12 +158,18 @@ in
     xwayland = false;
 
     extraConfig = ''
+      client.focused_tab_title ${darkTheme.focusedTabTitle.border} ${darkTheme.focusedTabTitle.background} ${darkTheme.focusedTabTitle.text}
+
       titlebar_border_thickness 2
 
       for_window [title="Firefox — Sharing Indicator"] kill;
     '';
 
     config = {
+      colors = {
+        inherit (darkTheme) focused focusedInactive unfocused urgent;
+      };
+
       seat."*".hide_cursor = "5000";
 
       input = {

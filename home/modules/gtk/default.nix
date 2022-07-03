@@ -7,6 +7,11 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
     gtk3.extraConfig.gtk-key-theme-name = "Emacs";
+
+    theme = {
+      package = pkgs.gnome-themes-extra;
+      name = "Adwaita-dark";
+    };
   };
 
   wayland.windowManager.sway.wrapperFeatures.gtk = true;

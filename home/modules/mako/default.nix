@@ -1,5 +1,20 @@
 { pkgs, ... }:
 
+let
+  darkTheme = {
+    border = "#3c3836";
+    background = "#1d2021";
+    text = "#ebdbb2";
+    progress = "#282828";
+  };
+
+  lightTheme = {
+    border = "#ebdbb2";
+    background = "#f9f5d7";
+    text = "#3c3836";
+    progress = "#d5c4a1";
+  };
+in
 {
   programs.mako = {
     enable = true;
@@ -8,22 +23,24 @@
     padding = "10";
     defaultTimeout = 10000;
     layer = "overlay";
+
+    backgroundColor = darkTheme.background;
+    borderColor = darkTheme.border;
+    textColor = darkTheme.text;
+    progressColor = darkTheme.progress;
+
     extraConfig = ''
       [mode=dark]
-      background-color=#1d2021
-      border-color=#3c3836
-      text-color=#ebdbb2
-      progress-color=over #282828
-      [urgency=high]
-      border-color=#cc241d
+      border-color=${darkTheme.border}
+      background-color=${darkTheme.background}
+      text-color=${darkTheme.text}
+      progress-color=over ${darkTheme.progress}
 
       [mode=light]
-      background-color=#f9f5d7
-      border-color=#ebdbb2
-      text-color=#3c3836
-      progress-color=over #d5c4a1
-      [urgency=high]
-      border-color=#cc241d
+      border-color=${darkTheme.border}
+      background-color=${darkTheme.background}
+      text-color=${darkTheme.text}
+      progress-color=over ${darkTheme.progress}
 
       [mode=do-not-disturb]
       invisible=1
