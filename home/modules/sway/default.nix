@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  modifier = "Mod4";
-
   brightnessctl = pkgs.writeShellScriptBin "brightnessctl" ''
     ${pkgs.brightnessctl}/bin/brightnessctl "$@"
     BRIGHTNESS=$(${pkgs.brightnessctl}/bin/brightnessctl info | grep "Current brightness:" | sed "s/.*(\(.*\))/\1/")
@@ -187,7 +185,7 @@ in
       };
 
       floating = {
-        inherit modifier;
+        modifier = "Mod4";
         titlebar = true;
         border = 2;
       };
@@ -232,8 +230,8 @@ in
       };
 
       keybindings = {
-        "${modifier}+r" = "mode Resize";
-        "${modifier}+w" = "mode Workspace";
+        "Mod4+r" = "mode Resize";
+        "Mod4+w" = "mode Workspace";
 
         "--locked XF86MonBrightnessDown" = "exec ${brightnessctl}/bin/brightnessctl set 5%-";
         "--locked XF86MonBrightnessUp" = "exec ${brightnessctl}/bin/brightnessctl set 5%+";
@@ -246,58 +244,58 @@ in
         "--locked XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
         "--locked XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
 
-        "${modifier}+return" = "exec ${pkgs.alacritty}/bin/alacritty";
-        "${modifier}+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
+        "Mod4+return" = "exec ${pkgs.alacritty}/bin/alacritty";
+        "Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
 
-        "${modifier}+tab" = "workspace back_and_forth";
+        "Mod4+tab" = "workspace back_and_forth";
 
-        "${modifier}+s" = "layout toggle split";
-        "${modifier}+shift+s" = "split toggle";
-        "${modifier}+t" = "layout toggle tabbed stacking";
-        "${modifier}+shift+t" = "layout toggle stacking tabbed";
+        "Mod4+s" = "layout toggle split";
+        "Mod4+shift+s" = "split toggle";
+        "Mod4+t" = "layout toggle tabbed stacking";
+        "Mod4+shift+t" = "layout toggle stacking tabbed";
 
-        "${modifier}+q" = "kill";
+        "Mod4+q" = "kill";
 
-        "${modifier}+f" = "fullscreen toggle";
+        "Mod4+f" = "fullscreen toggle";
 
-        "${modifier}+space" = "focus mode_toggle";
-        "${modifier}+shift+space" = "floating toggle";
+        "Mod4+space" = "focus mode_toggle";
+        "Mod4+shift+space" = "floating toggle";
 
-        "${modifier}+bracketleft" = "focus child";
-        "${modifier}+bracketright" = "focus parent";
+        "Mod4+bracketleft" = "focus child";
+        "Mod4+bracketright" = "focus parent";
 
-        "${modifier}+h" = "focus left";
-        "${modifier}+j" = "focus down";
-        "${modifier}+k" = "focus up";
-        "${modifier}+l" = "focus right";
+        "Mod4+h" = "focus left";
+        "Mod4+j" = "focus down";
+        "Mod4+k" = "focus up";
+        "Mod4+l" = "focus right";
 
-        "${modifier}+shift+h" = "move left";
-        "${modifier}+shift+j" = "move down";
-        "${modifier}+shift+k" = "move up";
-        "${modifier}+shift+l" = "move right";
+        "Mod4+shift+h" = "move left";
+        "Mod4+shift+j" = "move down";
+        "Mod4+shift+k" = "move up";
+        "Mod4+shift+l" = "move right";
 
-        "${modifier}+0" = "scratchpad show";
-        "${modifier}+shift+0" = "move container to scratchpad";
+        "Mod4+0" = "scratchpad show";
+        "Mod4+shift+0" = "move container to scratchpad";
 
-        "${modifier}+1" = "workspace number 1";
-        "${modifier}+2" = "workspace number 2";
-        "${modifier}+3" = "workspace number 3";
-        "${modifier}+4" = "workspace number 4";
-        "${modifier}+5" = "workspace number 5";
-        "${modifier}+6" = "workspace number 6";
-        "${modifier}+7" = "workspace number 7";
-        "${modifier}+8" = "workspace number 8";
-        "${modifier}+9" = "workspace number 9";
+        "Mod4+1" = "workspace number 1";
+        "Mod4+2" = "workspace number 2";
+        "Mod4+3" = "workspace number 3";
+        "Mod4+4" = "workspace number 4";
+        "Mod4+5" = "workspace number 5";
+        "Mod4+6" = "workspace number 6";
+        "Mod4+7" = "workspace number 7";
+        "Mod4+8" = "workspace number 8";
+        "Mod4+9" = "workspace number 9";
 
-        "${modifier}+shift+1" = "move container to workspace number 1";
-        "${modifier}+shift+2" = "move container to workspace number 2";
-        "${modifier}+shift+3" = "move container to workspace number 3";
-        "${modifier}+shift+4" = "move container to workspace number 4";
-        "${modifier}+shift+5" = "move container to workspace number 5";
-        "${modifier}+shift+6" = "move container to workspace number 6";
-        "${modifier}+shift+7" = "move container to workspace number 7";
-        "${modifier}+shift+8" = "move container to workspace number 8";
-        "${modifier}+shift+9" = "move container to workspace number 9";
+        "Mod4+shift+1" = "move container to workspace number 1";
+        "Mod4+shift+2" = "move container to workspace number 2";
+        "Mod4+shift+3" = "move container to workspace number 3";
+        "Mod4+shift+4" = "move container to workspace number 4";
+        "Mod4+shift+5" = "move container to workspace number 5";
+        "Mod4+shift+6" = "move container to workspace number 6";
+        "Mod4+shift+7" = "move container to workspace number 7";
+        "Mod4+shift+8" = "move container to workspace number 8";
+        "Mod4+shift+9" = "move container to workspace number 9";
       };
     };
   };
