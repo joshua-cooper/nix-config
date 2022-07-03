@@ -1,8 +1,10 @@
+{ pkgs, ... }:
+
 let
   darkTheme = {
     primary = {
       background = "#282828";
-      foreground ="#ebdbb2";
+      foreground = "#ebdbb2";
     };
 
     normal = {
@@ -56,6 +58,10 @@ let
       white = "#3c3836";
     };
   };
+
+  darkThemeYaml = pkgs.writeText "alacritty-dark-theme.yaml" (builtins.toJSON { colors = darkTheme; });
+
+  lightThemeYaml = pkgs.writeText "alacritty-light-theme.yaml" (builtins.toJSON { colors = lightTheme; });
 in
 {
   programs.alacritty = {
@@ -69,8 +75,6 @@ in
         y = 8;
       };
 
-      colors = darkTheme;
-
       import = [
         "~/.config/alacritty/theme.yaml"
       ];
@@ -79,8 +83,8 @@ in
 
   themes.scripts.alacritty = ''
     case "$THEME" in
-      dark) ln -sf ${./dark-theme.yaml} ~/.config/alacritty/theme.yaml ;;
-      light) ln -sf ${./light-theme.yaml} ~/.config/alacritty/theme.yaml ;;
+      dark) ln -sf ${darkThemeYaml} ~/.config/alacritty/theme.yaml ;;
+      light) ln -sf ${lightThemeYaml} ~/.config/alacritty/theme.yaml ;;
     esac
   '';
 }
