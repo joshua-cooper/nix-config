@@ -24,60 +24,70 @@ let
       "$VOLUME%$MUTED"
   '';
 
-  swaymsgThemeCommand = theme: lib.concatMapStringsSep ";" (lib.concatStringsSep " ") [
-    [
-      "client.focused"
-      theme.focused.border
-      theme.focused.background
-      theme.focused.text
-      theme.focused.border
-      theme.focused.border
-    ]
-    [
-      "client.focused_inactive"
-      theme.focusedInactive.border
-      theme.focusedInactive.background
-      theme.focusedInactive.text
-      theme.focusedInactive.border
-      theme.focusedInactive.border
-    ]
-    [
-      "client.focused_tab_title"
-      theme.focusedTabTitle.border
-      theme.focusedTabTitle.background
-      theme.focusedTabTitle.text
-      theme.focusedTabTitle.border
-      theme.focusedTabTitle.border
-    ]
-    [
-      "client.unfocused"
-      theme.unfocused.border
-      theme.unfocused.background
-      theme.unfocused.text
-      theme.unfocused.border
-      theme.unfocused.border
-    ]
-    [
-      "client.urgent"
-      theme.urgent.border
-      theme.urgent.background
-      theme.urgent.text
-      theme.urgent.border
-      theme.urgent.border
-    ]
-  ];
+  swaymsgThemeCommand = theme:
+    let
+      inherit (theme) focused focusedInactive focusedTabTitle unfocused urgent;
+    in
+    lib.concatMapStringsSep ";" (lib.concatStringsSep " ") [
+      [
+        "client.focused"
+        focused.border
+        focused.background
+        focused.text
+        focused.indicator
+        focused.childBorder
+      ]
+
+      [
+        "client.focused_inactive"
+        focusedInactive.border
+        focusedInactive.background
+        focusedInactive.text
+        focusedInactive.indicator
+        focusedInactive.childBorder
+      ]
+
+      [
+        "client.focused_tab_title"
+        focusedTabTitle.border
+        focusedTabTitle.background
+        focusedTabTitle.text
+      ]
+
+      [
+        "client.unfocused"
+        unfocused.border
+        unfocused.background
+        unfocused.text
+        unfocused.indicator
+        unfocused.childBorder
+      ]
+
+      [
+        "client.urgent"
+        urgent.border
+        urgent.background
+        urgent.text
+        urgent.indicator
+        urgent.childBorder
+      ]
+    ];
 
   darkTheme = {
     focused = {
       border = "#d65d0e";
       background = "#282828";
       text = "#fbf1c7";
+      indicator = "#d65d0e";
+      childBorder = "#d65d0e";
     };
 
     focusedInactive = {
       border = "#1d2021";
       background = "#282828";
       text = "#fbf1c7";
+      indicator = "#1d2021";
+      childBorder = "#1d2021";
     };
 
     focusedTabTitle = {
@@ -90,12 +100,16 @@ let
       border = "#1d2021";
       background = "#282828";
       text = "#fbf1c7";
+      indicator = "#1d2021";
+      childBorder = "#1d2021";
     };
 
     urgent = {
       border = "#cc241d";
       background = "#282828";
       text = "#fbf1c7";
+      indicator = "#cc241d";
+      childBorder = "#cc241d";
     };
   };
 
@@ -104,12 +118,16 @@ let
       border = "#d65d0e";
       background = "#fbf1c7";
       text = "#282828";
+      indicator = "#d65d0e";
+      childBorder = "#d65d0e";
     };
 
     focusedInactive = {
       border = "#f9f5d7";
       background = "#fbf1c7";
       text = "#282828";
+      indicator = "#f9f5d7";
+      childBorder = "#f9f5d7";
     };
 
     focusedTabTitle = {
@@ -122,12 +140,16 @@ let
       border = "#f9f5d7";
       background = "#fbf1c7";
       text = "#282828";
+      indicator = "#f9f5d7";
+      childBorder = "#f9f5d7";
     };
 
     urgent = {
       border = "#cc241d";
       background = "#fbf1c7";
       text = "#282828";
+      indicator = "#cc241d";
+      childBorder = "#cc241d";
     };
   };
 in
