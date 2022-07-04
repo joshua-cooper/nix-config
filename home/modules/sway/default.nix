@@ -24,130 +24,273 @@ let
 
   swaymsgThemeCommand = theme:
     let
-      inherit (theme) focused focusedInactive focusedTabTitle unfocused urgent;
+      w = theme.windows;
+      b = theme.bars;
     in
     lib.concatMapStringsSep ";" (lib.concatStringsSep " ") [
       [
         "client.focused"
-        focused.border
-        focused.background
-        focused.text
-        focused.indicator
-        focused.childBorder
+        w.focused.border
+        w.focused.background
+        w.focused.text
+        w.focused.indicator
+        w.focused.childBorder
       ]
 
       [
         "client.focused_inactive"
-        focusedInactive.border
-        focusedInactive.background
-        focusedInactive.text
-        focusedInactive.indicator
-        focusedInactive.childBorder
+        w.focusedInactive.border
+        w.focusedInactive.background
+        w.focusedInactive.text
+        w.focusedInactive.indicator
+        w.focusedInactive.childBorder
       ]
 
       [
         "client.focused_tab_title"
-        focusedTabTitle.border
-        focusedTabTitle.background
-        focusedTabTitle.text
+        w.focusedTabTitle.border
+        w.focusedTabTitle.background
+        w.focusedTabTitle.text
       ]
 
       [
         "client.unfocused"
-        unfocused.border
-        unfocused.background
-        unfocused.text
-        unfocused.indicator
-        unfocused.childBorder
+        w.unfocused.border
+        w.unfocused.background
+        w.unfocused.text
+        w.unfocused.indicator
+        w.unfocused.childBorder
       ]
 
       [
         "client.urgent"
-        urgent.border
-        urgent.background
-        urgent.text
-        urgent.indicator
-        urgent.childBorder
+        w.urgent.border
+        w.urgent.background
+        w.urgent.text
+        w.urgent.indicator
+        w.urgent.childBorder
+      ]
+
+      [
+        "bar main colors background"
+        b.background
+      ]
+
+      [
+        "bar main colors statusline"
+        b.statusline
+      ]
+
+      [
+        "bar main colors focused_background"
+        b.focusedBackground
+      ]
+
+      [
+        "bar main colors focused_statusline"
+        b.focusedStatusline
+      ]
+
+      [
+        "bar main colors focused_separator"
+        b.focusedSeparator
+      ]
+
+      [
+        "bar main colors focused_workspace"
+        b.focusedWorkspace.border
+        b.focusedWorkspace.background
+        b.focusedWorkspace.text
+      ]
+
+      [
+        "bar main colors active_workspace"
+        b.activeWorkspace.border
+        b.activeWorkspace.background
+        b.activeWorkspace.text
+      ]
+
+      [
+        "bar main colors inactive_workspace"
+        b.inactiveWorkspace.border
+        b.inactiveWorkspace.background
+        b.inactiveWorkspace.text
+      ]
+
+      [
+        "bar main colors urgent_workspace"
+        b.urgentWorkspace.border
+        b.urgentWorkspace.background
+        b.urgentWorkspace.text
+      ]
+
+      [
+        "bar main colors binding_mode"
+        b.bindingMode.border
+        b.bindingMode.background
+        b.bindingMode.text
       ]
     ];
 
   darkTheme = {
-    focused = {
-      border = "#d65d0e";
-      background = "#282828";
-      text = "#fbf1c7";
-      indicator = "#d65d0e";
-      childBorder = "#d65d0e";
+    windows = {
+      focused = {
+        border = "#d65d0e";
+        background = "#282828";
+        text = "#fbf1c7";
+        indicator = "#d65d0e";
+        childBorder = "#d65d0e";
+      };
+
+      focusedInactive = {
+        border = "#1d2021";
+        background = "#282828";
+        text = "#fbf1c7";
+        indicator = "#1d2021";
+        childBorder = "#1d2021";
+      };
+
+      focusedTabTitle = {
+        border = "#d65d0e";
+        background = "#282828";
+        text = "#fbf1c7";
+      };
+
+      unfocused = {
+        border = "#1d2021";
+        background = "#282828";
+        text = "#fbf1c7";
+        indicator = "#1d2021";
+        childBorder = "#1d2021";
+      };
+
+      urgent = {
+        border = "#cc241d";
+        background = "#282828";
+        text = "#fbf1c7";
+        indicator = "#cc241d";
+        childBorder = "#cc241d";
+      };
     };
 
-    focusedInactive = {
-      border = "#1d2021";
-      background = "#282828";
-      text = "#fbf1c7";
-      indicator = "#1d2021";
-      childBorder = "#1d2021";
-    };
+    bars = {
+      background = "#1d2021";
+      statusline = "#ebdbb2";
+      separator = "#928374";
+      focusedBackground = "#1d2021";
+      focusedStatusline = "#ebdbb2";
+      focusedSeparator = "#928374";
 
-    focusedTabTitle = {
-      border = "#d65d0e";
-      background = "#282828";
-      text = "#fbf1c7";
-    };
+      focusedWorkspace = {
+        border = "#d65d0e";
+        background = "#d65d0e";
+        text = "#fbf1c7";
+      };
 
-    unfocused = {
-      border = "#1d2021";
-      background = "#282828";
-      text = "#fbf1c7";
-      indicator = "#1d2021";
-      childBorder = "#1d2021";
-    };
+      activeWorkspace = {
+        border = "#d65d0e";
+        background = "#1d2021";
+        text = "#ebdbb2";
+      };
 
-    urgent = {
-      border = "#cc241d";
-      background = "#282828";
-      text = "#fbf1c7";
-      indicator = "#cc241d";
-      childBorder = "#cc241d";
+      inactiveWorkspace = {
+        border = "#1d2021";
+        background = "#1d2021";
+        text = "#ebdbb2";
+      };
+
+      urgentWorkspace = {
+        border = "#cc241d";
+        background = "#cc241d";
+        text = "#fbf1c7";
+      };
+
+      bindingMode = {
+        border = "#ebdbb2";
+        background = "#ebdbb2";
+        text = "#1d2021";
+      };
     };
   };
 
   lightTheme = {
-    focused = {
-      border = "#d65d0e";
-      background = "#fbf1c7";
-      text = "#282828";
-      indicator = "#d65d0e";
-      childBorder = "#d65d0e";
+    windows = {
+      focused = {
+        border = "#d65d0e";
+        background = "#fbf1c7";
+        text = "#282828";
+        indicator = "#d65d0e";
+        childBorder = "#d65d0e";
+      };
+
+      focusedInactive = {
+        border = "#f9f5d7";
+        background = "#fbf1c7";
+        text = "#282828";
+        indicator = "#f9f5d7";
+        childBorder = "#f9f5d7";
+      };
+
+      focusedTabTitle = {
+        border = "#d65d0e";
+        background = "#fbf1c7";
+        text = "#282828";
+      };
+
+      unfocused = {
+        border = "#f9f5d7";
+        background = "#fbf1c7";
+        text = "#282828";
+        indicator = "#f9f5d7";
+        childBorder = "#f9f5d7";
+      };
+
+      urgent = {
+        border = "#cc241d";
+        background = "#fbf1c7";
+        text = "#282828";
+        indicator = "#cc241d";
+        childBorder = "#cc241d";
+      };
     };
 
-    focusedInactive = {
-      border = "#f9f5d7";
-      background = "#fbf1c7";
-      text = "#282828";
-      indicator = "#f9f5d7";
-      childBorder = "#f9f5d7";
-    };
+    bars = {
+      background = "#f9f5d7";
+      statusline = "#3c3836";
+      separator = "#928374";
+      focusedBackground = "#f9f5d7";
+      focusedStatusline = "#3c3836";
+      focusedSeparator = "#928374";
 
-    focusedTabTitle = {
-      border = "#d65d0e";
-      background = "#fbf1c7";
-      text = "#282828";
-    };
+      focusedWorkspace = {
+        border = "#d65d0e";
+        background = "#d65d0e";
+        text = "#282828";
+      };
 
-    unfocused = {
-      border = "#f9f5d7";
-      background = "#fbf1c7";
-      text = "#282828";
-      indicator = "#f9f5d7";
-      childBorder = "#f9f5d7";
-    };
+      activeWorkspace = {
+        border = "#d65d0e";
+        background = "#f9f5d7";
+        text = "#3c3836";
+      };
 
-    urgent = {
-      border = "#cc241d";
-      background = "#fbf1c7";
-      text = "#282828";
-      indicator = "#cc241d";
-      childBorder = "#cc241d";
+      inactiveWorkspace = {
+        border = "#f9f5d7";
+        background = "#f9f5d7";
+        text = "#3c3836";
+      };
+
+      urgentWorkspace = {
+        border = "#cc241d";
+        background = "#f9f5d7";
+        text = "#282828";
+      };
+
+      bindingMode = {
+        border = "#3c3836";
+        background = "#3c3836";
+        text = "#f9f5d7";
+      };
     };
   };
 in
@@ -158,7 +301,7 @@ in
     xwayland = false;
 
     extraConfig = ''
-      client.focused_tab_title ${darkTheme.focusedTabTitle.border} ${darkTheme.focusedTabTitle.background} ${darkTheme.focusedTabTitle.text}
+      client.focused_tab_title ${darkTheme.windows.focusedTabTitle.border} ${darkTheme.windows.focusedTabTitle.background} ${darkTheme.windows.focusedTabTitle.text}
 
       titlebar_border_thickness 2
 
@@ -167,7 +310,7 @@ in
 
     config = {
       colors = {
-        inherit (darkTheme) focused focusedInactive unfocused urgent;
+        inherit (darkTheme.windows) focused focusedInactive unfocused urgent;
       };
 
       seat."*".hide_cursor = "5000";
@@ -205,6 +348,7 @@ in
         id = "main";
         position = "top";
         statusCommand = "${pkgs.i3status}/bin/i3status";
+        colors = darkTheme.bars;
       }];
 
       modes = {
