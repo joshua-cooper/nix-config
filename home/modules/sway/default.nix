@@ -204,6 +204,7 @@ in
       bars = [{
         id = "main";
         position = "top";
+        statusCommand = "${pkgs.i3status}/bin/i3status";
       }];
 
       modes = {
