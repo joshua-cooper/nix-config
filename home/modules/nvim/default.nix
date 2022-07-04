@@ -44,4 +44,8 @@
     ];
     extraConfig = "luafile ${./init.lua}";
   };
+
+  themes.scripts.nvim = ''
+    pkill -u "$(id -u)" --signal USR1 -x nvim
+  '';
 }

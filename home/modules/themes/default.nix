@@ -28,8 +28,29 @@ in
       scripts = mapAttrsToList (name: script: "${pkgs.writeShellScriptBin "${name}-theme" script}/bin/${name}-theme") cfg.scripts;
 
       themeScript = pkgs.writeShellScriptBin "theme" ''
-        export THEME="$1"
-        ${concatStringsSep " &\n" scripts} &
+        set_theme() {
+          export THEME="$1"
+          echo "$THEME" > ~/.local/share/theme
+          ${concatStringsSep " &\n  " scripts} &
+        }
+
+        get_theme() {
+          head -n1 ~/.local/share/theme
+        }
+
+        toggle_theme() {
+          case "$(get_theme)" in
+            dark) set_theme light ;;
+            light) set_theme dark ;;
+          esac
+        }
+
+        case "$1" in
+          set) shift; set_theme "$@" ;;
+          get) shift; get_theme "$@" ;;
+          toggle) shift; toggle_theme "$@" ;;
+        esac
+
         wait
       '';
     in
@@ -37,7 +58,7 @@ in
       home.packages = [ themeScript ];
 
       wayland.windowManager.sway.config.startup = [{
-        command = "${themeScript}/bin/theme dark";
+        command = "${themeScript}/bin/theme set dark";
         always = true;
       }];
     };

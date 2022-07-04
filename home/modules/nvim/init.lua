@@ -218,3 +218,22 @@ vim.api.nvim_set_keymap("n", "<leader>f", "<cmd>Telescope try_git_files<cr>", { 
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>Telescope find_directories<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>b", "<cmd>Telescope buffers<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", { noremap = true, silent = true })
+
+-- FIXME: This should only exist when themes.enable = true
+local reload_group = vim.api.nvim_create_augroup("InitReload", {})
+
+vim.api.nvim_create_autocmd({ "Signal" }, {
+  group = reload_group,
+  pattern = { "SIGUSR1" },
+  callback = function()
+    local theme = vim.call("system", "theme get")
+
+    if theme == "dark\n" then
+      vim.o.background = "dark"
+    elseif theme == "light\n" then
+      vim.o.background = "light"
+    end
+
+    vim.cmd("redraw")
+  end,
+})
