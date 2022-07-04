@@ -35,7 +35,7 @@ in
         }
 
         get_theme() {
-          head -n1 ~/.local/share/theme
+          head -n1 ~/.local/share/theme || echo dark
         }
 
         toggle_theme() {
@@ -45,10 +45,15 @@ in
           esac
         }
 
+        reload_theme() {
+          set_theme "$(get_theme)"
+        }
+
         case "$1" in
           set) shift; set_theme "$@" ;;
           get) shift; get_theme "$@" ;;
           toggle) shift; toggle_theme "$@" ;;
+          reload) shift; reload_theme "$@" ;;
         esac
 
         wait
@@ -58,7 +63,7 @@ in
       home.packages = [ themeScript ];
 
       wayland.windowManager.sway.config.startup = [{
-        command = "${themeScript}/bin/theme set dark";
+        command = "${themeScript}/bin/theme reload";
         always = true;
       }];
     };
