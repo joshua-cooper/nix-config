@@ -14,6 +14,13 @@ in
         description = "pinentry";
       };
 
+      default = mkOption {
+        type = types.enum [ "curses" "bemenu" ];
+        example = "bemenu";
+        default = "curses";
+        description = "The pinentry interface to use by default";
+      };
+
       curses = {
         enable = mkEnableOption "pinentry-curses config generation for <option>home.pinentry</option>";
       };
@@ -26,15 +33,19 @@ in
 
   config =
     let
-      # TODO: make this configurable
-      defaultPinentry = "${pkgs.pinentry-curses}/bin/pinentry-curses";
+      pinentryBin = {
+        curses = "${pkgs.pinentry-curses}/bin/pinentry-curses";
+        bemenu = "${pkgs.pinentry-bemenu}/bin/pinentry-bemenu";
+      };
+
+      defaultPinentryBin = pinentryBin."${cfg.default}";
 
       branches = optionals cfg.curses.enable [
-        "curses) exec ${pkgs.pinentry-curses}/bin/pinentry-curses \"$@\" ;;"
+        "curses) exec ${pinentryBin.curses} \"$@\" ;;"
       ] ++ optionals cfg.bemenu.enable [
-        "bemenu) exec ${pkgs.pinentry-bemenu}/bin/pinentry-bemenu \"$@\" ;;"
+        "bemenu) exec ${pinentryBin.bemenu} \"$@\" ;;"
       ] ++ [
-        "*) exec ${defaultPinentry} \"$@\" ;;"
+        "*) exec ${defaultPinentryBin} \"$@\" ;;"
       ];
 
       pinentry = pkgs.writeShellScriptBin "pinentry" ''
