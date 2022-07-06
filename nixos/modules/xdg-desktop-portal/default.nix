@@ -1,6 +1,3 @@
 {
-  xdg.portal = {
-    enable = true;
-    gtkUsePortal = true;
-  };
+  xdg.portal.enable = true;
 }
