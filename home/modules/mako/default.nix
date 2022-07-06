@@ -37,10 +37,10 @@ in
       progress-color=over ${darkTheme.progress}
 
       [mode=light]
-      border-color=${darkTheme.border}
-      background-color=${darkTheme.background}
-      text-color=${darkTheme.text}
-      progress-color=over ${darkTheme.progress}
+      border-color=${lightTheme.border}
+      background-color=${lightTheme.background}
+      text-color=${lightTheme.text}
+      progress-color=over ${lightTheme.progress}
 
       [mode=do-not-disturb]
       invisible=1
