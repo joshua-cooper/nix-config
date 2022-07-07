@@ -23,6 +23,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            ({ nixpkgs.overlays = [ (import ./overlays) ]; })
             (./. + "/nixos/configurations/${name}")
           ];
         });
