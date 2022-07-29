@@ -11,13 +11,13 @@
 
       docked.outputs = [
         {
-          criteria = "Goldstar Company Ltd LG HDR 4K 0x000071E6";
-          scale = 2.0;
-          position = "0,0";
+          criteria = "eDP-1";
+          position = "0,160";
         }
         {
-          criteria = "eDP-1";
-          position = "1920,540";
+          criteria = "Goldstar Company Ltd LG HDR 4K 0x000071E6";
+          scale = 2.0;
+          position = "1280,0";
         }
       ];
     };
