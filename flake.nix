@@ -10,6 +10,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur.url = "github:nix-community/nur";
   };
 
   outputs = inputs:
@@ -25,7 +27,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            ({ nixpkgs.overlays = [ (import ./overlays) ]; })
+            ({ nixpkgs.overlays = [ inputs.nur.overlay (import ./overlays) ]; })
             (./. + "/nixos/configurations/${name}")
           ];
         });
