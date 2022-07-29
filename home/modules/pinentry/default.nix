@@ -49,7 +49,7 @@ in
       ];
 
       pinentry = pkgs.writeShellScriptBin "pinentry" ''
-        set -eu
+        set -e
 
         case "$PINENTRY_USER_DATA" in
           ${concatStringsSep "\n  " branches}
