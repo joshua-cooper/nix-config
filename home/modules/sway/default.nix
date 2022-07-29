@@ -373,6 +373,15 @@ in
           "7" = "workspace number 7";
           "8" = "workspace number 8";
           "9" = "workspace number 9";
+          "shift+1" = "rename workspace to 1";
+          "shift+2" = "rename workspace to 2";
+          "shift+3" = "rename workspace to 3";
+          "shift+4" = "rename workspace to 4";
+          "shift+5" = "rename workspace to 5";
+          "shift+6" = "rename workspace to 6";
+          "shift+7" = "rename workspace to 7";
+          "shift+8" = "rename workspace to 8";
+          "shift+9" = "rename workspace to 9";
           "h" = "move workspace to left";
           "j" = "move workspace to down";
           "k" = "move workspace to up";
