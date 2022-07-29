@@ -17,6 +17,7 @@
     ../../modules/systemd-resolved
     ../../modules/nix
     ../../modules/openssh
+    ../../modules/docker
     ../../modules/fish
     ../../modules/sway
     ../../modules/pipewire
