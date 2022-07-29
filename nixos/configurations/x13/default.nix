@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
+    inputs.impermanence.nixosModule
     ./boot.nix
     ./hardware.nix
     ./power-management.nix
