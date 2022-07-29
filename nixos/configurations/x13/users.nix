@@ -1,10 +1,21 @@
 { pkgs, ... }:
 
 {
-  users.users.josh = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "i2c" "docker" ];
-    shell = pkgs.fish;
+  users = {
+    mutableUsers = false;
+
+    users = {
+      root = {
+        passwordFile = "/nix/passwords/root";
+      };
+
+      josh = {
+        isNormalUser = true;
+        passwordFile = "/nix/passwords/josh";
+        extraGroups = [ "wheel" "i2c" "docker" ];
+        shell = pkgs.fish;
+      };
+    };
   };
 
   home-manager.users.josh = {

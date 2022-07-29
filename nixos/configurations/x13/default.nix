@@ -11,6 +11,7 @@
     ./file-systems.nix
     ./networking.nix
     ./users.nix
+    ./state.nix
     ../../modules/environment
     ../../modules/iwd
     ../../modules/systemd-resolved

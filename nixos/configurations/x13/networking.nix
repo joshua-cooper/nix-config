@@ -2,6 +2,8 @@
   networking = {
     hostName = "x13";
 
+    hostId = "c69bb763";
+
     nameservers = [ "1.1.1.1#one.one.one.one" ];
 
     useNetworkd = true;

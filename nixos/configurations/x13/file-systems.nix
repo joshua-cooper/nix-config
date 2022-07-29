@@ -1,14 +1,25 @@
 {
   fileSystems = {
+    "/" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "mode=755" "size=16G" ];
+    };
+
     "/boot" = {
-      device = "/dev/disk/by-uuid/76BC-694B";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
-    "/" = {
-      device = "/dev/disk/by-uuid/96bd5221-9fe6-4bcc-9b21-91b1f539fc0a";
-      fsType = "btrfs";
-      options = [ "subvol=nixos" ];
+    "/nix" = {
+      device = "x13/nix";
+      fsType = "zfs";
+    };
+
+    "/state" = {
+      device = "x13/state";
+      fsType = "zfs";
+      neededForBoot = true;
     };
   };
 }
