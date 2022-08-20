@@ -22,6 +22,14 @@ let
       "$VOLUME%$MUTED"
   '';
 
+  clamshell-mode = pkgs.writeShellScriptBin "clamshell-mode" ''
+    if grep -q open /proc/acpi/button/lid/LID/state; then
+      ${pkgs.sway}/bin/swaymsg output eDP-1 enable
+    else
+      ${pkgs.sway}/bin/swaymsg output eDP-1 disable
+    fi
+  '';
+
   swaymsgThemeCommand = theme:
     let
       w = theme.windows;
@@ -306,6 +314,13 @@ in
       titlebar_border_thickness 2
 
       for_window [title="Firefox — Sharing Indicator"] kill;
+
+      bindswitch --reload --locked {
+        lid:on output eDP-1 disable
+        lid:off output eDP-1 enable
+      }
+
+      exec_always ${clamshell-mode}/bin/clamshell-mode
     '';
 
     config = {
