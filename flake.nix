@@ -48,11 +48,6 @@
             ];
           };
         }) // {
-      nixosConfigurations = inputs.nixpkgs.lib.mapAttrs mkNixosConfiguration {
-        x13 = {
-          system = "x86_64-linux";
-          modules = [ ./nixos/configurations/x13 ];
-        };
-      };
+      nixosConfigurations = inputs.nixpkgs.lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
     };
 }
