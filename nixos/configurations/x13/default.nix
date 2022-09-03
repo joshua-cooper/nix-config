@@ -5,24 +5,14 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
     inputs.impermanence.nixosModule
     inputs.nur.nixosModules.nur
+    ../../profiles/workstation
     ./boot.nix
-    ./hardware.nix
-    ./power-management.nix
     ./file-systems.nix
+    ./hardware.nix
     ./networking.nix
-    ./users.nix
+    ./power-management.nix
     ./state.nix
-    ../../modules/environment
-    ../../modules/iwd
-    ../../modules/systemd-resolved
-    ../../modules/nix
-    ../../modules/openssh
-    ../../modules/docker
-    ../../modules/fish
-    ../../modules/sway
-    ../../modules/pipewire
-    ../../modules/xdg-desktop-portal
-    ../../modules/home-manager
+    ./users.nix
   ];
 
   system.stateVersion = "22.05";

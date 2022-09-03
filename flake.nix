@@ -2,56 +2,57 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
+
+    nur.url = "github:nix-community/nur";
 
     impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
     };
-
-    nur.url = "github:nix-community/nur";
   };
 
   outputs = inputs:
     let
-      supportedSystems = [ "x86_64-linux" ];
+      overlays = [
+        inputs.nur.overlay
+        (import ./overlays)
+      ];
 
-      eachSystem = inputs.nixpkgs.lib.genAttrs supportedSystems;
-
-      nixpkgsFor = eachSystem (system: import inputs.nixpkgs { inherit system; });
-
-      mkNixosConfigurations = inputs.nixpkgs.lib.mapAttrs
-        (name: { system }: inputs.nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          modules = [
-            ({ nixpkgs.overlays = [ inputs.nur.overlay (import ./overlays) ]; })
-            (./. + "/nixos/configurations/${name}")
-          ];
-        });
+      mkNixosConfiguration = name: configuration: inputs.nixpkgs.lib.nixosSystem {
+        inherit (configuration) system;
+        specialArgs = { inherit inputs; };
+        modules = [{ nixpkgs = { inherit overlays; }; }] ++ configuration.modules;
+      };
     in
-    {
-      formatter = eachSystem (system: nixpkgsFor."${system}".nixpkgs-fmt);
-
-      devShells = eachSystem (system:
+    inputs.flake-utils.lib.eachDefaultSystem
+      (system:
         let
-          pkgs = nixpkgsFor."${system}";
+          pkgs = import inputs.nixpkgs { inherit system overlays; };
         in
         {
-          default = pkgs.mkShell {
+          formatter = pkgs.nixpkgs-fmt;
+
+          devShells.default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
               nixpkgs-fmt
               rnix-lsp
               stylua
             ];
           };
-        });
-
-      nixosConfigurations = mkNixosConfigurations {
-        vm = { system = "x86_64-linux"; };
-        x13 = { system = "x86_64-linux"; };
+        }) // {
+      nixosConfigurations = inputs.nixpkgs.lib.mapAttrs mkNixosConfiguration {
+        x13 = {
+          system = "x86_64-linux";
+          modules = [ ./nixos/configurations/x13 ];
+        };
       };
     };
 }

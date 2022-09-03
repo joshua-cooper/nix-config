@@ -120,7 +120,6 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("find_directories")
 require("telescope").load_extension("try_git_files")
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")

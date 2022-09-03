@@ -17,30 +17,31 @@
     withRuby = false;
     withPython3 = false;
     withNodeJs = false;
-    extraPackages = with pkgs; [ fd ripgrep gitMinimal ];
+    extraPackages = with pkgs; [
+      fd
+      gitMinimal
+      ripgrep
+    ];
     plugins = with pkgs.vimPlugins; [
-      # Themes
-      tokyonight-nvim
-      gruvbox-nvim
-      # Features
-      editorconfig-vim
-      vim-surround
-      vim-repeat
-      vim-fugitive
-      comment-nvim
-      telescope-nvim
-      telescope-fzf-native-nvim
-      telescope-ui-select-nvim
-      telescope-file-browser-nvim
-      fidget-nvim
-      nvim-lspconfig
       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
-      # Language support
-      vim-nix
+      comment-nvim
       dhall-vim
-      vim-toml
+      editorconfig-vim
+      fidget-nvim
+      gruvbox-nvim
+      nvim-lspconfig
       rust-vim
+      telescope-file-browser-nvim
+      telescope-fzf-native-nvim
+      telescope-nvim
+      telescope-ui-select-nvim
+      tokyonight-nvim
+      vim-fugitive
       vim-ledger
+      vim-nix
+      vim-repeat
+      vim-surround
+      vim-toml
     ];
     extraConfig = "luafile ${./init.lua}";
   };

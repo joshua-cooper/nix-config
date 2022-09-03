@@ -1,7 +1,7 @@
 {
   programs.tmux = {
     enable = true;
-    sensibleOnTop = true;
+    sensibleOnTop = false;
     baseIndex = 1;
     escapeTime = 16;
     historyLimit = 100000;
