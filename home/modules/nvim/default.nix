@@ -26,12 +26,12 @@
       editorconfig-vim
       vim-surround
       vim-repeat
-      vim-dirvish
       vim-fugitive
       comment-nvim
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
+      telescope-file-browser-nvim
       fidget-nvim
       nvim-lspconfig
       (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
@@ -44,8 +44,4 @@
     ];
     extraConfig = "luafile ${./init.lua}";
   };
-
-  themes.scripts.nvim = ''
-    pkill -u "$(id -u)" --signal USR1 -x nvim
-  '';
 }
