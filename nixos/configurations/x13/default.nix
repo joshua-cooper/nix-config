@@ -26,4 +26,9 @@
   ];
 
   system.stateVersion = "22.05";
+
+  security = {
+    sudo.enable = false;
+    doas.enable = true;
+  };
 }
