@@ -420,7 +420,9 @@ in
         "--locked XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
 
         "Mod4+return" = "exec ${pkgs.alacritty}/bin/alacritty";
-        "Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
+        # TODO: configure bemenu somewhere else
+        "Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run -i -l 10";
+        "Mod4+p" = "exec ${pkgs.pass-menu}/bin/pass-menu";
 
         "Mod4+tab" = "workspace back_and_forth";
 
