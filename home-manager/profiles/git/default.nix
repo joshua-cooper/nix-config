@@ -9,6 +9,10 @@
     extraConfig = {
       init.defaultBranch = "master";
       pull.rebase = true;
+      push = {
+        autoSetupRemote = true;
+        default = "simple";
+      };
     };
   };
 }
