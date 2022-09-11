@@ -17,7 +17,9 @@
     ../htop
     ../kanshi
     ../mako
+    ../mpd
     ../mpv
+    ../ncmpcpp
     ../neovim
     ../pass
     ../playerctl
