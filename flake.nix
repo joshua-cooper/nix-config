@@ -48,6 +48,8 @@
             ];
           };
         }) // {
+      templates = import ./templates;
+
       nixosConfigurations = inputs.nixpkgs.lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
     };
 }
