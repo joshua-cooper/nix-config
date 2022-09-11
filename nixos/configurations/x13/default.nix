@@ -22,6 +22,8 @@
     doas.enable = true;
   };
 
+  time.timeZone = "Asia/Seoul";
+
   services.sanoid = {
     enable = true;
 
