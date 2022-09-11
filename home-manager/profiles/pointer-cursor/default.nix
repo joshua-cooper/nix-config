@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.pointerCursor = {
-    package = pkgs.gnome-themes-extra;
+    package = pkgs.gnome.adwaita-icon-theme;
     name = "Adwaita";
-    size = 20;
-    gtk.enable = config.gtk.enable;
+    # TODO: XCURSOR_SIZE isn't following this (just uses 24 by default)
+    # Need to find where that is being set so this can be changed.
+    size = 24;
   };
 }

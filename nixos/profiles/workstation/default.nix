@@ -13,5 +13,3 @@
     ../xdg-desktop-portal
   ];
 }
-
-
