@@ -143,24 +143,6 @@ require("fidget").setup({
   },
 })
 
-function lsp_on_attach(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-  vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-
-  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = bufnr })
-  vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = bufnr })
-  vim.keymap.set("v", "<leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<cr>", { buffer = bufnr })
-
-  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    group = vim.api.nvim_create_augroup("InitLsp", {}),
-    buffer = 0,
-    callback = function()
-      vim.lsp.buf.formatting_sync()
-    end,
-  })
-end
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = true,
   signs = false,
@@ -168,12 +150,51 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-require("lspconfig").rnix.setup({
-  on_attach = lsp_on_attach,
-})
+local function lsp_setup(server_name, options)
+  local server = require("lspconfig")[server_name]
 
-require("lspconfig").rust_analyzer.setup({
-  on_attach = lsp_on_attach,
+  local opts = options or {}
+  local on_attach_override = opts.on_attach
+
+  local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = bufnr })
+    vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = bufnr })
+    vim.keymap.set("v", "<leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<cr>", { buffer = bufnr })
+
+    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+      group = vim.api.nvim_create_augroup("InitLsp", {}),
+      buffer = 0,
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+      end,
+    })
+
+    if on_attach_override then
+      on_attach_override(client, bufnr)
+    end
+  end
+
+  local function lsp_executable()
+    if opts.cmd then
+      return opts.cmd[1]
+    else
+      return server.document_config.default_config.cmd[1]
+    end
+  end
+
+  opts.on_attach = on_attach
+  opts.autostart = vim.call("executable", lsp_executable()) == 1
+
+  server.setup(opts)
+end
+
+lsp_setup("rnix")
+
+lsp_setup("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
       cargo = {
@@ -193,21 +214,6 @@ require("lspconfig").rust_analyzer.setup({
       },
     },
   },
-})
-
-require("lspconfig").denols.setup({
-  on_attach = lsp_on_attach,
-  init_options = {
-    lint = true,
-  },
-})
-
-require("lspconfig").tsserver.setup({
-  on_attach = lsp_on_attach,
-})
-
-require("lspconfig").gopls.setup({
-  on_attach = lsp_on_attach,
 })
 
 -- Keymaps
