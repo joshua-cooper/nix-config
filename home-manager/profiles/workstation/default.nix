@@ -4,6 +4,7 @@
   imports = [
     ../../modules/pinentry
     ../../modules/themes
+    ../aerc
     ../alacritty
     ../bemenu
     ../direnv

@@ -26,12 +26,6 @@ in
 
   programs = {
     msmtp.enable = true;
-
     mbsync.enable = true;
-
-    aerc = {
-      enable = true;
-      extraConfig.general.unsafe-accounts-conf = true;
-    };
   };
 }
