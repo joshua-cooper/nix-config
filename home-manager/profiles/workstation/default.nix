@@ -7,6 +7,7 @@
     ../alacritty
     ../bemenu
     ../direnv
+    ../email
     ../firefox
     ../fish
     ../fonts
