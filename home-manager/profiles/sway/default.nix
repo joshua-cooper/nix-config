@@ -413,6 +413,7 @@ in
         "--locked XF86AudioRaiseVolume" = "exec ${pamixer}/bin/pamixer -i 5";
         "--locked XF86AudioLowerVolume" = "exec ${pamixer}/bin/pamixer -d 5";
         "--locked XF86AudioMute" = "exec ${pamixer}/bin/pamixer -t";
+        "--locked XF86AudioMicMute" = "exec ${pkgs.pamixer}/bin/pamixer --default-source -t";
         "--locked XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
         "--locked XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
         "--locked XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
