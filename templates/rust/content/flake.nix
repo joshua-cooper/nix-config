@@ -18,30 +18,30 @@
     };
   };
 
-  outputs = inputs: inputs.flake-utils.lib.eachDefaultSystem (system:
+  outputs = inputs: with inputs; flake-utils.lib.eachDefaultSystem (system:
     let
-      pkgs = import inputs.nixpkgs {
+      pkgs = import nixpkgs {
         inherit system;
-        overlays = [ inputs.rust-overlay.overlays.default ];
+        overlays = [ rust-overlay.overlays.default ];
       };
 
-      rust-toolchain = pkgs.rust-bin.stable."1.63.0".default;
+      rust-toolchain = pkgs.rust-bin.stable.latest.default;
 
-      craneLib = (inputs.crane.mkLib pkgs).overrideToolchain rust-toolchain;
+      craneLib = (crane.mkLib pkgs).overrideToolchain rust-toolchain;
 
       commonArgs = {
         src = ./.;
       };
 
-      cargoArtifacts = craneLib.buildDepsOnly (commonArgs);
+      cargoArtifacts = craneLib.buildDepsOnly commonArgs;
 
       rust-template = craneLib.buildPackage (commonArgs // {
         inherit cargoArtifacts;
       });
 
-      fmt = craneLib.cargoFmt (commonArgs);
+      cargo-fmt = craneLib.cargoFmt commonArgs;
 
-      clippy = craneLib.cargoClippy (commonArgs // {
+      cargo-clippy = craneLib.cargoClippy (commonArgs // {
         inherit cargoArtifacts;
         cargoClippyExtraArgs = "--all-targets -- --deny warnings";
       });
@@ -59,7 +59,7 @@
       };
 
       checks = {
-        inherit rust-template fmt clippy;
+        inherit rust-template cargo-fmt cargo-clippy;
       };
 
       packages.default = rust-template;
