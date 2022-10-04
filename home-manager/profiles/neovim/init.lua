@@ -1,3 +1,15 @@
+-- Utility functions
+
+jc = {}
+
+function jc.is_executable(command)
+  return vim.fn.executable(command) == 1
+end
+
+function jc.root_dir(root_files)
+  return vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1])
+end
+
 -- Global variables
 
 vim.g.mapleader = " "
@@ -5,6 +17,7 @@ vim.g.mapleader = " "
 -- Default options
 
 vim.o.showcmd = false
+-- vim.o.cmdheight = 0
 vim.o.showmode = true
 vim.o.ruler = false
 vim.o.undofile = false
@@ -18,6 +31,7 @@ vim.o.hidden = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.completeopt = "menu"
+vim.o.relativenumber = true
 vim.o.expandtab = true
 vim.o.tabstop = 2
 vim.o.softtabstop = 0
@@ -62,6 +76,10 @@ require("nvim-treesitter.configs").setup({
   indent = {
     enable = false,
   },
+})
+
+require("treesitter-context").setup({
+  enable = true,
 })
 
 -- Comments
@@ -150,70 +168,22 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-local function lsp_setup(server_name, options)
-  local server = require("lspconfig")[server_name]
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("InitLsp", {}),
+  callback = function(args)
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = args.buf })
+    vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = args.buf })
+    vim.keymap.set("v", "<leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<cr>", { buffer = args.buf })
 
-  local opts = options or {}
-  local on_attach_override = opts.on_attach
-
-  local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-    vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-
-    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = bufnr })
-    vim.keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = bufnr })
-    vim.keymap.set("v", "<leader>a", "<cmd>lua vim.lsp.buf.range_code_action()<cr>", { buffer = bufnr })
-
+    -- TODO: this tries to write non lsp files and prints an error message
     vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-      group = vim.api.nvim_create_augroup("InitLsp", {}),
-      buffer = 0,
+      group = args.group,
+      buffer = args.buffer,
       callback = function()
-        vim.lsp.buf.formatting_sync()
+        vim.lsp.buf.format()
       end,
     })
-
-    if on_attach_override then
-      on_attach_override(client, bufnr)
-    end
-  end
-
-  local function lsp_executable()
-    if opts.cmd then
-      return opts.cmd[1]
-    else
-      return server.document_config.default_config.cmd[1]
-    end
-  end
-
-  opts.on_attach = on_attach
-  opts.autostart = vim.call("executable", lsp_executable()) == 1
-
-  server.setup(opts)
-end
-
-lsp_setup("rnix")
-
-lsp_setup("rust_analyzer", {
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        loadOutDirsFromCheck = true,
-        allFeatures = true,
-      },
-      rustfmt = {
-        rangeFormatting = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true,
-      },
-      checkOnSave = {
-        command = "clippy",
-      },
-    },
-  },
+  end,
 })
 
 -- Keymaps

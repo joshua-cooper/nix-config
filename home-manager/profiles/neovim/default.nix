@@ -29,7 +29,7 @@
       editorconfig-vim
       fidget-nvim
       gruvbox-nvim
-      nvim-lspconfig
+      nvim-treesitter-context
       rust-vim
       telescope-file-browser-nvim
       telescope-fzf-native-nvim
