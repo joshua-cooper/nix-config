@@ -26,6 +26,7 @@
     ../pass
     ../playerctl
     ../pointer-cursor
+    ../qutebrowser
     ../sway
     ../swayidle
     ../swaylock
