@@ -19,23 +19,23 @@
     };
   };
 
-  outputs = inputs:
+  outputs = inputs: with inputs;
     let
       overlays = [
-        inputs.nur.overlay
+        nur.overlay
         (import ./overlays)
       ];
 
-      mkNixosConfiguration = name: configuration: inputs.nixpkgs.lib.nixosSystem {
+      mkNixosConfiguration = name: configuration: nixpkgs.lib.nixosSystem {
         inherit (configuration) system;
         specialArgs = { inherit inputs; };
         modules = [{ nixpkgs = { inherit overlays; }; }] ++ configuration.modules;
       };
     in
-    inputs.flake-utils.lib.eachDefaultSystem
+    flake-utils.lib.eachDefaultSystem
       (system:
         let
-          pkgs = import inputs.nixpkgs { inherit system overlays; };
+          pkgs = import nixpkgs { inherit system overlays; };
         in
         {
           formatter = pkgs.nixpkgs-fmt;
@@ -50,6 +50,6 @@
         }) // {
       templates = import ./templates;
 
-      nixosConfigurations = inputs.nixpkgs.lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
+      nixosConfigurations = nixpkgs.lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
     };
 }
