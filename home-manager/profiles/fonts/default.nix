@@ -8,5 +8,6 @@
   home.packages = with pkgs; [
     cascadia-code
     noto-fonts-cjk
+    font-awesome
   ];
 }
