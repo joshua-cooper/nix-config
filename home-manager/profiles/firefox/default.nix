@@ -13,6 +13,11 @@
     profiles.default = {
       id = 0;
 
+      search = {
+        default = "DuckDuckGo";
+        force = true;
+      };
+
       settings = {
         "browser.aboutwelcome.enabled" = false;
         "browser.startup.homepage" = "about:blank";
