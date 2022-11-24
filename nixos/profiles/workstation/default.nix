@@ -1,13 +1,13 @@
 {
   imports = [
+    ../base
     ../docker
-    ../environment
     ../fish
     ../home-manager
     ../iwd
+    ../mosh
     ../nix
     ../openssh
-    ../mosh
     ../pipewire
     ../sway
     ../systemd-resolved

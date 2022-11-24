@@ -12,4 +12,6 @@ in
     defaultPackages = with pkgs; [ neovimMinimal gitMinimal ];
     variables.EDITOR = "nvim";
   };
+
+  security.sudo.enable = false;
 }
