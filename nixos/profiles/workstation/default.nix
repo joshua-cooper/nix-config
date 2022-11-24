@@ -1,6 +1,7 @@
 {
   imports = [
     ../base
+    ../doas
     ../docker
     ../fish
     ../home-manager
