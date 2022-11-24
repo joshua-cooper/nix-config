@@ -19,12 +19,17 @@
     };
   };
 
-  outputs = inputs: with inputs;
+  outputs = inputs:
+    with inputs;
+    with nixpkgs.lib;
     let
+      supportedSystems = [
+        "x86_64-linux"
+      ];
+
       overlays = [
         nur.overlay
-        (import ./overlays)
-      ];
+      ] ++ attrValues (import ./overlays);
 
       mkNixosConfiguration = name: configuration: nixpkgs.lib.nixosSystem {
         inherit (configuration) system;
@@ -32,13 +37,21 @@
         modules = [{ nixpkgs = { inherit overlays; }; }] ++ configuration.modules;
       };
     in
-    flake-utils.lib.eachDefaultSystem
+    {
+      overlays = import ./overlays;
+
+      templates = import ./templates;
+
+      nixosConfigurations = mapAttrs mkNixosConfiguration (import ./nixos/configurations);
+    } // flake-utils.lib.eachSystem supportedSystems
       (system:
         let
           pkgs = import nixpkgs { inherit system overlays; };
         in
         {
           formatter = pkgs.nixpkgs-fmt;
+
+          checks = { };
 
           devShells.default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
@@ -47,9 +60,5 @@
               stylua
             ];
           };
-        }) // {
-      templates = import ./templates;
-
-      nixosConfigurations = nixpkgs.lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
-    };
+        });
 }
