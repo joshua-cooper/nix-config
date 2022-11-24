@@ -7,6 +7,7 @@
     ../iwd
     ../nix
     ../openssh
+    ../mosh
     ../pipewire
     ../sway
     ../systemd-resolved

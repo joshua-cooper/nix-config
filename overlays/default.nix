@@ -29,16 +29,6 @@ in
   #   ];
   # };
 
-  mosh = prev.mosh.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [
-      (prev.fetchpatch {
-        # truecolor
-        url = "https://github.com/mobile-shell/mosh/commit/ac0492cb5a703ae979b5c923182671d2688b025a.patch";
-        sha256 = "sha256-bOA96fnutrFOAbAFDhMkeLJ/7ERL30m3FSCdU5GSh2o=";
-      })
-    ];
-  });
-
   pass-menu = prev.writeShellScriptBin "pass-menu" ''
     set -u
 
