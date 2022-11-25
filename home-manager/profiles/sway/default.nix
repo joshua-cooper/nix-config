@@ -362,8 +362,11 @@ in
       bars = [{
         id = "main";
         position = "top";
-        statusCommand = "${pkgs.i3status}/bin/i3status";
+        statusCommand = "${pkgs.sustas}/bin/sustas";
         colors = darkTheme.bars;
+        extraConfig = ''
+          separator_symbol " "
+        '';
       }];
 
       modes = {
