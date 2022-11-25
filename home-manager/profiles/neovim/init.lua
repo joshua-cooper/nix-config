@@ -27,10 +27,6 @@ vim.opt.termguicolors = true
 vim.cmd("colorscheme gruvbox")
 
 vim.keymap.set({ "n", "v" }, "<leader><leader>", ":")
-vim.keymap.set("n", "<m-h>", "<c-w>h")
-vim.keymap.set("n", "<m-j>", "<c-w>j")
-vim.keymap.set("n", "<m-k>", "<c-w>k")
-vim.keymap.set("n", "<m-l>", "<c-w>l")
 vim.keymap.set("n", "<leader><tab>", "<cmd>buffer #<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>confirm quitall<cr>")

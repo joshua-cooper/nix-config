@@ -37,6 +37,16 @@
       bind -n M-7 select-window -t 7
       bind -n M-8 select-window -t 8
       bind -n M-9 select-window -t 9
+
+      bind -n M-h select-pane -L
+      bind -n M-j select-pane -D
+      bind -n M-k select-pane -U
+      bind -n M-l select-pane -R
+
+      bind -n M-H swap-pane -s "{left-of}"
+      bind -n M-J swap-pane -s "{down-of}"
+      bind -n M-K swap-pane -s "{up-of}"
+      bind -n M-L swap-pane -s "{right-of}"
     '';
   };
 }
