@@ -23,13 +23,13 @@
       ripgrep
     ];
     plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
       comment-nvim
       dhall-vim
       editorconfig-vim
       fidget-nvim
       gruvbox-nvim
       nvim-treesitter-context
+      nvim-treesitter.withAllGrammars
       rust-vim
       telescope-file-browser-nvim
       telescope-fzf-native-nvim
