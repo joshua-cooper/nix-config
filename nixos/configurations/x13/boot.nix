@@ -2,13 +2,7 @@
 
 {
   boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        editor = false;
-      };
-      efi.canTouchEfiVariables = true;
-    };
+    loader.efi.canTouchEfiVariables = true;
 
     initrd = {
       availableKernelModules = [

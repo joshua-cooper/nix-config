@@ -5,6 +5,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
     inputs.impermanence.nixosModule
     inputs.nur.nixosModules.nur
+    ../../profiles/systemd-boot
     ../../profiles/workstation
     ../../profiles/zfs
     ./boot.nix
