@@ -24,6 +24,5 @@
 
     kernelParams = [ "i915.enable_psr=0" ];
 
-    supportedFilesystems = [ "zfs" ];
   };
 }

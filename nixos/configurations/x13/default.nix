@@ -6,6 +6,7 @@
     inputs.impermanence.nixosModule
     inputs.nur.nixosModules.nur
     ../../profiles/workstation
+    ../../profiles/zfs
     ./boot.nix
     ./file-systems.nix
     ./hardware.nix
