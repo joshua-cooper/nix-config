@@ -1,4 +1,6 @@
-final: prev: {
+final: prev:
+
+{
   sustas = prev.rustPlatform.buildRustPackage rec {
     pname = "sustas";
     version = "0.1.0";
