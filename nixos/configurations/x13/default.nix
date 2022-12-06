@@ -48,12 +48,8 @@
     commands."x13/state" = {
       recursive = true;
       sendOptions = "w";
-      # TODO: DNS entry for this
-      target = "backups@5.161.152.96:coffer/backups/x13";
+      target = "root@zh2641b.rsync.net:data1/x13";
     };
   };
 
-  programs.ssh.knownHosts = {
-    "5.161.152.96".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFpeXYsVsDVWcvF7YfXTZTB5w2XGI8ssLAEhhxOJKL0S";
-  };
 }
