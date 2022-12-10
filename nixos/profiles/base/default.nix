@@ -8,6 +8,10 @@ let
   };
 in
 {
+  imports = [
+    ../../modules/zfs-backup
+  ];
+
   environment = {
     defaultPackages = with pkgs; [ neovimMinimal gitMinimal ];
     variables.EDITOR = "nvim";
