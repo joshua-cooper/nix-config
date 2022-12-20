@@ -28,8 +28,6 @@
       bind % split-window -h -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
-      bind -n M-f resize-pane -Z
-
       bind -n M-1 select-window -t 1
       bind -n M-2 select-window -t 2
       bind -n M-3 select-window -t 3
