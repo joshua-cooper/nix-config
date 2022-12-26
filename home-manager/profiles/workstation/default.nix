@@ -39,6 +39,7 @@
   home.packages = with pkgs; [
     imv
     libnotify
+    signal-desktop
     wl-clipboard
   ];
 }
