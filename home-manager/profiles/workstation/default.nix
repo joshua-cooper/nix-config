@@ -40,6 +40,7 @@
     imv
     libnotify
     signal-desktop
+    vscodium
     wl-clipboard
   ];
 }

@@ -24,6 +24,7 @@
         { directory = ".local/share/password-store"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         { directory = ".config/Signal"; mode = "0700"; }
+        { directory = ".config/VSCodium"; mode = "0700"; }
       ];
       files = [ ];
     };
