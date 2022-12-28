@@ -3,11 +3,13 @@
     directories = [
       "/etc/ssh"
       "/var/log"
+      "/var/lib/nixos"
       "/var/lib/bluetooth"
       { directory = "/var/lib/iwd"; mode = "0700"; }
     ];
     files = [
       "/etc/machine-id"
+      "/var/lib/systemd/timesync/clock"
     ];
 
     users.josh = {
