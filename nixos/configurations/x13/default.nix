@@ -33,5 +33,4 @@
   services.zfs-backup = {
     enable = true;
   };
-
 }

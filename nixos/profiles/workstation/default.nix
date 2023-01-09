@@ -6,9 +6,7 @@
     ../fish
     ../home-manager
     ../iwd
-    ../mosh
     ../nix
-    ../openssh
     ../pipewire
     ../sway
     ../systemd-resolved
