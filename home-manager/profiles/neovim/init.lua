@@ -287,6 +287,8 @@ require("nvim-treesitter.configs").setup({
 
 require("Comment").setup()
 
+require("neogit").setup()
+
 require("telescope").setup({
   defaults = {
     sorting_strategy = "ascending",

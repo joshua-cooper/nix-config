@@ -28,6 +28,7 @@
       editorconfig-vim
       fidget-nvim
       gruvbox-nvim
+      neogit
       nvim-treesitter.withAllGrammars
       rust-vim
       telescope-file-browser-nvim
