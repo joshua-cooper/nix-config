@@ -34,7 +34,7 @@ vim.keymap.set("n", "<leader>d", "<cmd>confirm bdelete<cr>")
 vim.keymap.set("n", "<leader>f", "<cmd>Telescope try_git_files show_untracked=true<cr>")
 vim.keymap.set("n", "<leader>b", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>g", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>e", "<cmd>Telescope file_browser path=%:p:h<cr>")
+vim.keymap.set("n", "<leader>e", "<cmd>Dirbuf<cr>")
 vim.keymap.set("n", "<m-n>", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<m-N>", vim.diagnostic.goto_prev)
 
@@ -330,19 +330,12 @@ require("telescope").setup({
     ["ui-select"] = {
       require("telescope.themes").get_dropdown({}),
     },
-    ["file_browser"] = {
-      dir_icon = "",
-      hijack_netrw = true,
-      hidden = true,
-      mappings = {},
-    },
   },
 })
 
 require("telescope").load_extension("try_git_files")
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("ui-select")
-require("telescope").load_extension("file_browser")
 
 require("fidget").setup({
   text = {
