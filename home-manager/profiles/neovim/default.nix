@@ -32,6 +32,7 @@
       neogit
       nvim-autopairs
       nvim-treesitter.withAllGrammars
+      nvim-ts-autotag
       rust-vim
       telescope-fzf-native-nvim
       telescope-nvim
