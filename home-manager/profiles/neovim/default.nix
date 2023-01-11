@@ -30,6 +30,7 @@
       fidget-nvim
       gruvbox-nvim
       neogit
+      nvim-autopairs
       nvim-treesitter.withAllGrammars
       rust-vim
       telescope-fzf-native-nvim
