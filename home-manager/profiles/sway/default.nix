@@ -14,7 +14,7 @@ let
   pamixer = pkgs.writeShellScriptBin "pamixer" ''
     ${pkgs.pamixer}/bin/pamixer "$@"
     VOLUME=$(${pkgs.pamixer}/bin/pamixer --get-volume)
-    MUTED=$(${pkgs.pamixer}/bin/pamixer --get-mute > /dev/null && echo " (muted)")
+    MUTED=$(${pkgs.pamixer}/bin/pamixer --get-mute | grep -q true && echo " (muted)")
     ${pkgs.libnotify}/bin/notify-send \
       -h string:x-canonical-private-synchronous:volume \
       -h int:value:"$VOLUME" \
