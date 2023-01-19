@@ -1,9 +1,21 @@
 { pkgs, ... }:
 
+let
+  opt = plugin: {
+    inherit plugin;
+    type = "lua";
+    optional = true;
+  };
+in
 {
   xdg.configFile = {
+    "nvim/init.lua".source = ./init.lua;
     "nvim/lua" = {
       source = ./lua;
+      recursive = true;
+    };
+    "nvim/plugin" = {
+      source = ./plugin;
       recursive = true;
     };
     "nvim/after" = {
@@ -23,28 +35,25 @@
       ripgrep
     ];
     plugins = with pkgs.vimPlugins; [
-      comment-nvim
-      dhall-vim
-      dirbuf-nvim
-      editorconfig-vim
-      fidget-nvim
-      gruvbox-nvim
-      neogit
-      nvim-autopairs
+      # Base
+      (opt comment-nvim)
+      (opt dirbuf-nvim)
+      (opt neogit)
+      (opt nvim-autopairs)
+      (opt nvim-surround)
+      (opt telescope-fzf-native-nvim)
+      (opt telescope-nvim)
+      (opt telescope-ui-select-nvim)
+      (opt vim-fugitive)
+      null-ls-nvim
       nvim-treesitter.withAllGrammars
-      nvim-ts-autotag
-      rust-vim
-      telescope-fzf-native-nvim
-      telescope-nvim
-      telescope-ui-select-nvim
+
+      # Themes
+      gruvbox-nvim
       tokyonight-nvim
-      vim-fugitive
-      vim-ledger
+
+      # Language support
       vim-nix
-      vim-repeat
-      vim-surround
-      vim-toml
     ];
-    extraConfig = "luafile ${./init.lua}";
   };
 }

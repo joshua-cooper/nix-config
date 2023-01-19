@@ -19,6 +19,7 @@
       set -g mouse on
       set -g renumber-windows on
       set -g set-titles on
+      set -g focus-events on
 
       bind s choose-tree -sZO time
       bind b set status
