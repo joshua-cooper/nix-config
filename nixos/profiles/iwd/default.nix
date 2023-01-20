@@ -11,4 +11,8 @@
   systemd.services.iwd = {
     serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep 1";
   };
+
+  state.directories = [
+    { directory = "/var/lib/iwd"; mode = "0700"; }
+  ];
 }

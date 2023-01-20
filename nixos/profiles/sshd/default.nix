@@ -1,3 +1,5 @@
+{ config, lib, ... }:
+
 {
   services.openssh = {
     enable = true;
@@ -11,4 +13,7 @@
       type = "ed25519";
     }];
   };
+
+  state.files =
+    lib.concatMap (key: [ key.path (key.path + ".pub") ]) config.services.openssh.hostKeys;
 }

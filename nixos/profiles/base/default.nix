@@ -1,7 +1,9 @@
-{ lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   imports = [
+    inputs.impermanence.nixosModule
+    inputs.nur.nixosModules.nur
     ../../modules
   ];
 
@@ -11,4 +13,15 @@
   };
 
   security.sudo.enable = lib.mkDefault false;
+
+  state = {
+    directories = [
+      "/var/lib/nixos"
+    ];
+
+    files = [
+      "/etc/machine-id"
+      "/var/lib/systemd/timesync/clock"
+    ];
+  };
 }
