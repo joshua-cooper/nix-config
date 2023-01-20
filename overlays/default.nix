@@ -1,6 +1,8 @@
 {
   neovim = import ./neovim;
 
+  pass = import ./pass;
+
   pass-menu = import ./pass-menu;
 
   sustas = import ./sustas;

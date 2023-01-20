@@ -1,9 +1,5 @@
 { pkgs, ... }:
 
-let
-  # TODO: make this global
-  pass = pkgs.pass-nodmenu.withExtensions (e: with e; [ pass-otp ]);
-in
 {
   accounts.email = {
     maildirBasePath = "mail";
@@ -13,7 +9,7 @@ in
       address = "josh@cooper.dev";
       userName = "josh@cooper.dev";
       realName = "Josh Cooper";
-      passwordCommand = "${pass}/bin/pass fastmail/app-password";
+      passwordCommand = "${pkgs.pass}/bin/pass fastmail/app-password";
       aerc.enable = true;
       msmtp.enable = true;
       mbsync = {

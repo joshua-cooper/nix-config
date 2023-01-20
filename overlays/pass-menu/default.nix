@@ -1,9 +1,5 @@
 final: prev:
 
-let
-  # TODO: make this itself an overlay to be used elsewhere?
-  pass = final.pass-nodmenu.withExtensions (e: with e; [ pass-otp ]);
-in
 {
   pass-menu = prev.writeShellScriptBin "pass-menu" ''
     set -u
@@ -31,8 +27,8 @@ in
     export PINENTRY_USER_DATA=bemenu
 
     case "$choice" in
-      *otp*) ${pass}/bin/pass otp -c "$choice" ;;
-      *) ${pass}/bin/pass -c "$choice" ;;
+      *otp*) ${final.pass}/bin/pass otp -c "$choice" ;;
+      *) ${final.pass}/bin/pass -c "$choice" ;;
     esac
 
     status="$?"
