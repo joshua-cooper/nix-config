@@ -1,5 +1,6 @@
 {
-  services.mpd.enable = true;
-
-  services.mpdris2.enable = true;
+  services = {
+    mpd.enable = true;
+    mpdris2.enable = true;
+  };
 }
