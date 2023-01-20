@@ -42,4 +42,7 @@ end
 
 null_ls.setup({
   sources = sources,
+  on_init = function()
+    require("jc.lsp")
+  end,
 })
