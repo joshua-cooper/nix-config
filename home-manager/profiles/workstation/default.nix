@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/pinentry
+    ../../modules
     ../aerc
     ../alacritty
     ../bemenu

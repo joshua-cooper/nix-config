@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/zfs-backup
+    ../../modules
   ];
 
   environment = {
