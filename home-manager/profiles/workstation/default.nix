@@ -23,6 +23,7 @@
     ../ncmpcpp
     ../neovim
     ../pass
+    ../pass-menu
     ../playerctl
     ../pointer-cursor
     ../qutebrowser
