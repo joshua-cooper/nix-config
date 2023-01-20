@@ -8,6 +8,7 @@
     ../iwd
     ../nix
     ../pipewire
+    ../ssh
     ../sway
     ../systemd-resolved
     ../xdg-desktop-portal
