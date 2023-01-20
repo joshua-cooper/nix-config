@@ -29,278 +29,6 @@ let
       ${pkgs.sway}/bin/swaymsg output eDP-1 disable
     fi
   '';
-
-  swaymsgThemeCommand = theme:
-    let
-      w = theme.windows;
-      b = theme.bars;
-    in
-    lib.concatMapStringsSep ";" (lib.concatStringsSep " ") [
-      [
-        "client.focused"
-        w.focused.border
-        w.focused.background
-        w.focused.text
-        w.focused.indicator
-        w.focused.childBorder
-      ]
-
-      [
-        "client.focused_inactive"
-        w.focusedInactive.border
-        w.focusedInactive.background
-        w.focusedInactive.text
-        w.focusedInactive.indicator
-        w.focusedInactive.childBorder
-      ]
-
-      [
-        "client.focused_tab_title"
-        w.focusedTabTitle.border
-        w.focusedTabTitle.background
-        w.focusedTabTitle.text
-      ]
-
-      [
-        "client.unfocused"
-        w.unfocused.border
-        w.unfocused.background
-        w.unfocused.text
-        w.unfocused.indicator
-        w.unfocused.childBorder
-      ]
-
-      [
-        "client.urgent"
-        w.urgent.border
-        w.urgent.background
-        w.urgent.text
-        w.urgent.indicator
-        w.urgent.childBorder
-      ]
-
-      [
-        "bar main colors background"
-        b.background
-      ]
-
-      [
-        "bar main colors statusline"
-        b.statusline
-      ]
-
-      [
-        "bar main colors focused_background"
-        b.focusedBackground
-      ]
-
-      [
-        "bar main colors focused_statusline"
-        b.focusedStatusline
-      ]
-
-      [
-        "bar main colors focused_separator"
-        b.focusedSeparator
-      ]
-
-      [
-        "bar main colors focused_workspace"
-        b.focusedWorkspace.border
-        b.focusedWorkspace.background
-        b.focusedWorkspace.text
-      ]
-
-      [
-        "bar main colors active_workspace"
-        b.activeWorkspace.border
-        b.activeWorkspace.background
-        b.activeWorkspace.text
-      ]
-
-      [
-        "bar main colors inactive_workspace"
-        b.inactiveWorkspace.border
-        b.inactiveWorkspace.background
-        b.inactiveWorkspace.text
-      ]
-
-      [
-        "bar main colors urgent_workspace"
-        b.urgentWorkspace.border
-        b.urgentWorkspace.background
-        b.urgentWorkspace.text
-      ]
-
-      [
-        "bar main colors binding_mode"
-        b.bindingMode.border
-        b.bindingMode.background
-        b.bindingMode.text
-      ]
-    ];
-
-  darkTheme = {
-    windows = {
-      focused = {
-        border = "#d65d0e";
-        background = "#282828";
-        text = "#fbf1c7";
-        indicator = "#d65d0e";
-        childBorder = "#d65d0e";
-      };
-
-      focusedInactive = {
-        border = "#1d2021";
-        background = "#282828";
-        text = "#fbf1c7";
-        indicator = "#1d2021";
-        childBorder = "#1d2021";
-      };
-
-      focusedTabTitle = {
-        border = "#d65d0e";
-        background = "#282828";
-        text = "#fbf1c7";
-      };
-
-      unfocused = {
-        border = "#1d2021";
-        background = "#282828";
-        text = "#fbf1c7";
-        indicator = "#1d2021";
-        childBorder = "#1d2021";
-      };
-
-      urgent = {
-        border = "#cc241d";
-        background = "#282828";
-        text = "#fbf1c7";
-        indicator = "#cc241d";
-        childBorder = "#cc241d";
-      };
-    };
-
-    bars = {
-      background = "#1d2021";
-      statusline = "#ebdbb2";
-      separator = "#928374";
-      focusedBackground = "#1d2021";
-      focusedStatusline = "#ebdbb2";
-      focusedSeparator = "#928374";
-
-      focusedWorkspace = {
-        border = "#d65d0e";
-        background = "#d65d0e";
-        text = "#fbf1c7";
-      };
-
-      activeWorkspace = {
-        border = "#d65d0e";
-        background = "#1d2021";
-        text = "#ebdbb2";
-      };
-
-      inactiveWorkspace = {
-        border = "#1d2021";
-        background = "#1d2021";
-        text = "#ebdbb2";
-      };
-
-      urgentWorkspace = {
-        border = "#cc241d";
-        background = "#cc241d";
-        text = "#fbf1c7";
-      };
-
-      bindingMode = {
-        border = "#ebdbb2";
-        background = "#ebdbb2";
-        text = "#1d2021";
-      };
-    };
-  };
-
-  lightTheme = {
-    windows = {
-      focused = {
-        border = "#d65d0e";
-        background = "#fbf1c7";
-        text = "#282828";
-        indicator = "#d65d0e";
-        childBorder = "#d65d0e";
-      };
-
-      focusedInactive = {
-        border = "#f9f5d7";
-        background = "#fbf1c7";
-        text = "#282828";
-        indicator = "#f9f5d7";
-        childBorder = "#f9f5d7";
-      };
-
-      focusedTabTitle = {
-        border = "#d65d0e";
-        background = "#fbf1c7";
-        text = "#282828";
-      };
-
-      unfocused = {
-        border = "#f9f5d7";
-        background = "#fbf1c7";
-        text = "#282828";
-        indicator = "#f9f5d7";
-        childBorder = "#f9f5d7";
-      };
-
-      urgent = {
-        border = "#cc241d";
-        background = "#fbf1c7";
-        text = "#282828";
-        indicator = "#cc241d";
-        childBorder = "#cc241d";
-      };
-    };
-
-    bars = {
-      background = "#f9f5d7";
-      statusline = "#3c3836";
-      separator = "#928374";
-      focusedBackground = "#f9f5d7";
-      focusedStatusline = "#3c3836";
-      focusedSeparator = "#928374";
-
-      focusedWorkspace = {
-        border = "#d65d0e";
-        background = "#d65d0e";
-        text = "#282828";
-      };
-
-      activeWorkspace = {
-        border = "#d65d0e";
-        background = "#f9f5d7";
-        text = "#3c3836";
-      };
-
-      inactiveWorkspace = {
-        border = "#f9f5d7";
-        background = "#f9f5d7";
-        text = "#3c3836";
-      };
-
-      urgentWorkspace = {
-        border = "#cc241d";
-        background = "#f9f5d7";
-        text = "#282828";
-      };
-
-      bindingMode = {
-        border = "#3c3836";
-        background = "#3c3836";
-        text = "#f9f5d7";
-      };
-    };
-  };
 in
 {
   wayland.windowManager.sway = {
@@ -308,24 +36,39 @@ in
 
     xwayland = false;
 
-    extraConfig = ''
-      client.focused_tab_title ${darkTheme.windows.focusedTabTitle.border} ${darkTheme.windows.focusedTabTitle.background} ${darkTheme.windows.focusedTabTitle.text}
-
-      titlebar_border_thickness 2
-
-      for_window [title="Firefox — Sharing Indicator"] kill;
-
-      bindswitch --reload --locked {
-        lid:on output eDP-1 disable
-        lid:off output eDP-1 enable
-      }
-
-      exec_always ${clamshell-mode}/bin/clamshell-mode
-    '';
-
     config = {
       colors = {
-        inherit (darkTheme.windows) focused focusedInactive unfocused urgent;
+        focused = {
+          border = "#d65d0e";
+          background = "#282828";
+          text = "#fbf1c7";
+          indicator = "#d65d0e";
+          childBorder = "#d65d0e";
+        };
+
+        focusedInactive = {
+          border = "#1d2021";
+          background = "#282828";
+          text = "#fbf1c7";
+          indicator = "#1d2021";
+          childBorder = "#1d2021";
+        };
+
+        unfocused = {
+          border = "#1d2021";
+          background = "#282828";
+          text = "#fbf1c7";
+          indicator = "#1d2021";
+          childBorder = "#1d2021";
+        };
+
+        urgent = {
+          border = "#cc241d";
+          background = "#282828";
+          text = "#fbf1c7";
+          indicator = "#cc241d";
+          childBorder = "#cc241d";
+        };
       };
 
       seat."*".hide_cursor = "5000";
@@ -363,7 +106,44 @@ in
         id = "main";
         position = "top";
         statusCommand = "${pkgs.sustas}/bin/sustas";
-        colors = darkTheme.bars;
+        colors = {
+          background = "#1d2021";
+          statusline = "#ebdbb2";
+          separator = "#928374";
+          focusedBackground = "#1d2021";
+          focusedStatusline = "#ebdbb2";
+          focusedSeparator = "#928374";
+
+          focusedWorkspace = {
+            border = "#d65d0e";
+            background = "#d65d0e";
+            text = "#fbf1c7";
+          };
+
+          activeWorkspace = {
+            border = "#d65d0e";
+            background = "#1d2021";
+            text = "#ebdbb2";
+          };
+
+          inactiveWorkspace = {
+            border = "#1d2021";
+            background = "#1d2021";
+            text = "#ebdbb2";
+          };
+
+          urgentWorkspace = {
+            border = "#cc241d";
+            background = "#cc241d";
+            text = "#fbf1c7";
+          };
+
+          bindingMode = {
+            border = "#ebdbb2";
+            background = "#ebdbb2";
+            text = "#1d2021";
+          };
+        };
         extraConfig = ''
           separator_symbol " "
         '';
@@ -424,8 +204,7 @@ in
         "--locked XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
 
         "Mod4+return" = "exec ${pkgs.alacritty}/bin/alacritty";
-        # TODO: configure bemenu somewhere else
-        "Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run -i -l 10";
+        "Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
         "Mod4+p" = "exec ${pkgs.pass-menu}/bin/pass-menu";
 
         "Mod4+tab" = "workspace back_and_forth";
@@ -479,12 +258,20 @@ in
         "Mod4+shift+9" = "move container to workspace number 9";
       };
     };
-  };
 
-  themes.scripts.sway = ''
-    case "$THEME" in
-      dark) exec ${pkgs.sway}/bin/swaymsg "${swaymsgThemeCommand darkTheme}" ;;
-      light) exec ${pkgs.sway}/bin/swaymsg "${swaymsgThemeCommand lightTheme}" ;;
-    esac
-  '';
+    extraConfig = ''
+      client.focused_tab_title #d65d0e #282828 #fbf1c7
+
+      titlebar_border_thickness 2
+
+      for_window [title="Firefox — Sharing Indicator"] kill;
+
+      bindswitch --reload --locked {
+        lid:on output eDP-1 disable
+        lid:off output eDP-1 enable
+      }
+
+      exec_always ${clamshell-mode}/bin/clamshell-mode
+    '';
+  };
 }

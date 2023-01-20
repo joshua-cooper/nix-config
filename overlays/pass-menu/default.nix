@@ -24,7 +24,7 @@ in
 
     cd "$PASSWORD_STORE_DIR" || exit
 
-    choice=$(find . -name "*.gpg" -type f | sed -e 's/^\.\///' -e 's/\.gpg$//' | ${final.bemenu}/bin/bemenu -i -l 10)
+    choice=$(find . -name "*.gpg" -type f | sed -e 's/^\.\///' -e 's/\.gpg$//' | ${final.bemenu}/bin/bemenu)
 
     [ -z "$choice" ] && exit
 
