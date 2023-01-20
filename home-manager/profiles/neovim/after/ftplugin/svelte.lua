@@ -1,1 +1,1 @@
-require("jc.lsp.svelte").start()
+-- require("jc.lsp.svelte").start()
