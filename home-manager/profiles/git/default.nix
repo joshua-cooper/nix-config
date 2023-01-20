@@ -15,4 +15,15 @@
       };
     };
   };
+
+  home.shellAliases = {
+    g = "git";
+    gs = "git status";
+    gd = "git diff";
+    gl = "git log";
+    gf = "git fetch";
+    gb = "git branch";
+    gr = "git rebase";
+    gco = "git checkout";
+  };
 }
