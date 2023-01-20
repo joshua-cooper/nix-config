@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -10,5 +10,5 @@
     variables.EDITOR = "nvim";
   };
 
-  security.sudo.enable = false;
+  security.sudo.enable = lib.mkDefault false;
 }
