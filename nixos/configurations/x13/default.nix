@@ -4,6 +4,8 @@
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
     ../../profiles/bluetooth
+    ../../profiles/mosh
+    ../../profiles/sshd
     ../../profiles/systemd-boot
     ../../profiles/workstation
     ../../profiles/zfs
