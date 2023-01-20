@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ../../modules
     ../aerc
     ../alacritty
+    ../base
     ../bemenu
     ../direnv
     ../email
