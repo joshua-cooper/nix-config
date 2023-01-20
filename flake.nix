@@ -1,64 +1,51 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    flake-utils.url = "github:numtide/flake-utils";
-
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-
     nur.url = "github:nix-community/nur";
-
     impermanence.url = "github:nix-community/impermanence";
-
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        utils.follows = "flake-utils";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs:
-    with inputs;
-    with nixpkgs.lib;
     let
+      lib = inputs.nixpkgs.lib;
+
       supportedSystems = [
         "x86_64-linux"
       ];
 
-      overlays = [
-        nur.overlay
-      ] ++ attrValues (import ./overlays);
+      overlays = [ inputs.nur.overlay ] ++ lib.attrValues (import ./overlays);
 
-      mkNixosConfiguration = name: configuration: nixpkgs.lib.nixosSystem {
-        inherit (configuration) system;
-        specialArgs = { inherit inputs; };
-        modules = [{ nixpkgs = { inherit overlays; }; }] ++ configuration.modules;
+      eachSystem = f: lib.genAttrs supportedSystems (system: f (import inputs.nixpkgs {
+        inherit system overlays;
+      }));
+
+      mkNixosConfiguration = name: configuration: lib.nixosSystem {
+        system = configuration.system;
+        specialArgs.inputs = inputs;
+        modules = [{ nixpkgs.overlays = overlays; }] ++ configuration.modules;
       };
     in
     {
+      formatter = eachSystem (pkgs: pkgs.nixpkgs-fmt);
+
+      devShells = eachSystem (pkgs: {
+        default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            nixpkgs-fmt
+            stylua
+          ];
+        };
+      });
+
       overlays = import ./overlays;
 
       templates = import ./templates;
 
-      nixosConfigurations = mapAttrs mkNixosConfiguration (import ./nixos/configurations);
-    } // flake-utils.lib.eachSystem supportedSystems
-      (system:
-        let
-          pkgs = import nixpkgs { inherit system overlays; };
-        in
-        {
-          formatter = pkgs.nixpkgs-fmt;
-
-          checks = { };
-
-          devShells.default = pkgs.mkShell {
-            nativeBuildInputs = with pkgs; [
-              nixpkgs-fmt
-              rnix-lsp
-              stylua
-            ];
-          };
-        });
+      nixosConfigurations = lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
+    };
 }
