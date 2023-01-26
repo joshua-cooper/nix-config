@@ -29,6 +29,18 @@ let
       ${pkgs.sway}/bin/swaymsg output eDP-1 disable
     fi
   '';
+
+  workspace-switcher = pkgs.writeShellScriptBin "workspace-switcher" ''
+    set -eu
+
+    workspace=$(swaymsg -t get_workspaces | ${pkgs.jq}/bin/jq -r ".[].name" | sort | ${pkgs.bemenu}/bin/bemenu -p "Workspace")
+
+    if [ -n "$workspace" ]; then
+      swaymsg workspace "$workspace"
+    else
+      exit 1
+    fi
+  '';
 in
 {
   wayland.windowManager.sway = {
@@ -246,6 +258,7 @@ in
         "Mod4+7" = "workspace number 7";
         "Mod4+8" = "workspace number 8";
         "Mod4+9" = "workspace number 9";
+        "Mod4+shift+w" = "exec ${workspace-switcher}/bin/workspace-switcher";
 
         "Mod4+shift+1" = "move container to workspace number 1";
         "Mod4+shift+2" = "move container to workspace number 2";
