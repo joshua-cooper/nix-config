@@ -39,7 +39,6 @@ in
       (opt comment-nvim)
       (opt dirbuf-nvim)
       (opt neogit)
-      (opt nvim-autopairs)
       (opt nvim-surround)
       (opt telescope-fzf-native-nvim)
       (opt telescope-nvim)
