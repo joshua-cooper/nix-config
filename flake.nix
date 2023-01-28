@@ -20,14 +20,19 @@
 
       overlays = [ inputs.nur.overlay ] ++ lib.attrValues (import ./overlays);
 
-      eachSystem = f: lib.genAttrs supportedSystems (system: f (import inputs.nixpkgs {
-        inherit system overlays;
-      }));
+      pkgsFor = system: import inputs.nixpkgs { inherit system overlays; };
+
+      eachSystem = f: lib.genAttrs supportedSystems (system: f (pkgsFor system));
 
       mkNixosConfiguration = name: configuration: lib.nixosSystem {
         system = configuration.system;
         specialArgs.inputs = inputs;
         modules = [{ nixpkgs.overlays = overlays; }] ++ configuration.modules;
+      };
+
+      mkHomeConfiguration = name: configuration: inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor configuration.system;
+        modules = configuration.modules;
       };
     in
     {
@@ -47,5 +52,7 @@
       templates = import ./templates;
 
       nixosConfigurations = lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
+
+      homeConfigurations = lib.mapAttrs mkHomeConfiguration (import ./home-manager/configurations);
     };
 }
