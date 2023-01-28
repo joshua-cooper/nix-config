@@ -1,5 +1,5 @@
 require("jc.lazy").plugin({
-  name = "vimplugin-dirbuf.nvim",
+  name = "dirbuf.nvim",
   lazy = false,
   commands = { "Dirbuf" },
 })
