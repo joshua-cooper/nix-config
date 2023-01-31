@@ -13,6 +13,9 @@ require("jc.lazy").plugin({
             mirror = false,
           },
         },
+        preview = {
+          filesize_limit = 0.5,
+        },
         vimgrep_arguments = {
           "rg",
           "--color=never",
