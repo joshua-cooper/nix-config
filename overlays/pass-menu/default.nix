@@ -2,44 +2,50 @@ final: prev:
 
 {
   pass-menu = prev.writeShellScriptBin "pass-menu" ''
-    set -u
-
-    # TODO: Configure the timeout in mako and use urgency here?
-    # This depends on how urgency is used by other things, but these kinds of
-    # notifications are a response to user action so shouldn't stay around
-    # long. The same can be said for brightness / volume notifications.
-    notify_copied() {
-      ${final.libnotify}/bin/notify-send -t 2000 pass-menu "Copied ''${1:-}"
+    die() {
+      if [ -n "$1" ]; then
+        printf "ERROR: %s\n" "$1"
+      fi
+      exit 1
     }
 
-    notify_failure() {
-      ${final.libnotify}/bin/notify-send -t 5000 pass-menu "''${1:-Failed}"
+    notify() {
+      ${prev.libnotify}/bin/notify-send -u low "pass-menu" "$1"
     }
 
-    PASSWORD_STORE_DIR=''${PASSWORD_STORE_DIR:-$HOME/.password-store}
+    get_choice() {
+      find . -name "*.gpg" -type f | sed -e "s/^\.\///" -e 's/\.gpg$//' | ${prev.bemenu}/bin/bemenu
+    }
 
-    cd "$PASSWORD_STORE_DIR" || exit
+    get_password() {
+      export PINENTRY_USER_DATA=bemenu
 
-    choice=$(find . -name "*.gpg" -type f | sed -e 's/^\.\///' -e 's/\.gpg$//' | ${final.bemenu}/bin/bemenu)
+      case "$1" in
+        *otp*) ${prev.pass}/bin/pass otp "$choice" ;;
+        *) ${prev.pass}/bin/pass "$choice" ;;
+      esac
+    }
 
-    [ -z "$choice" ] && exit
+    get_first_line() {
+      printf "%s" "$1" | head -n1 | tr -d "\n"
+    }
 
-    export PINENTRY_USER_DATA=bemenu
+    main() {
+      cd "''${PASSWORD_STORE_DIR:-$HOME/.password-store}" || die "No password store found"
 
-    case "$choice" in
-      *otp*) ${final.pass}/bin/pass otp -c "$choice" ;;
-      *) ${final.pass}/bin/pass -c "$choice" ;;
-    esac
+      choice=$(get_choice)
+      [ -z "$choice" ] && die "No password selected"
 
-    status="$?"
+      password=$(get_password "$choice")
 
-    case "$status" in
-      0) notify_copied "$choice" ;;
-      1) notify_failure "$choice is not in the password store" ;;
-      2) notify_failure "Incorrect password" ;;
-      *) notify_failure ;;
-    esac
+      case "$?" in
+        0) get_first_line "$password" | ${prev.wtype}/bin/wtype - ;;
+        1) notify "$choice is not in the password store"; die ;;
+        2) notify "Incorrect password"; die ;;
+        *) notify "Failed to get password"; die ;;
+      esac
+    }
 
-    exit "$status"
+    main "$@"
   '';
 }
