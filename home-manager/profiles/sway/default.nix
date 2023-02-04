@@ -218,6 +218,7 @@ in
         "Mod4+return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "--no-repeat Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
         "--no-repeat Mod4+p" = "exec ${pkgs.pass-menu}/bin/pass-menu";
+        "--no-repeat Mod4+e" = "exec ${pkgs.emoji-picker}/bin/emoji-picker";
 
         "Mod4+tab" = "workspace back_and_forth";
 

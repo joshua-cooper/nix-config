@@ -1,4 +1,6 @@
 {
+  emoji-picker = import ./emoji-picker;
+
   neovim = import ./neovim;
 
   pass = import ./pass;
