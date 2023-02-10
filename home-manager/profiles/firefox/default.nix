@@ -4,14 +4,14 @@
   programs.firefox = {
     enable = true;
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      darkreader
-      tridactyl
-    ];
-
     profiles.default = {
       id = 0;
+
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        darkreader
+        tridactyl
+      ];
 
       search = {
         default = "DuckDuckGo";
