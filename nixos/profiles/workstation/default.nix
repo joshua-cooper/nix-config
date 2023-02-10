@@ -5,12 +5,13 @@
     ../docker
     ../fish
     ../home-manager
-    ../iwd
     ../nix
     ../pipewire
     ../ssh
     ../sway
+    ../systemd-boot
     ../systemd-resolved
     ../xdg-desktop-portal
+    ../zfs
   ];
 }

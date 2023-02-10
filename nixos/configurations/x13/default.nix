@@ -3,12 +3,9 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
-    ../../profiles/bluetooth
+    ../../profiles/laptop
     ../../profiles/mosh
     ../../profiles/sshd
-    ../../profiles/systemd-boot
-    ../../profiles/workstation
-    ../../profiles/zfs
   ];
 
   boot = {
@@ -76,13 +73,6 @@
   };
 
   systemd.network.wait-online.anyInterface = true;
-
-  powerManagement = {
-    enable = true;
-    cpuFreqGovernor = "powersave";
-  };
-
-  services.tlp.enable = true;
 
   environment.persistence."/state" = {
     directories = [
