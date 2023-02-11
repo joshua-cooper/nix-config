@@ -37,6 +37,7 @@
   ];
 
   home.packages = with pkgs; [
+    devbox
     imv
     libnotify
     signal-desktop

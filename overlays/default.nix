@@ -1,6 +1,8 @@
 {
   emoji-picker = import ./emoji-picker;
 
+  devbox = import ./devbox;
+
   neovim = import ./neovim;
 
   pass = import ./pass;
