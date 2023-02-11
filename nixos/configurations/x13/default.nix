@@ -59,17 +59,9 @@
 
   networking = {
     hostName = "x13";
-
     hostId = "c69bb763";
-
     nameservers = [ "1.1.1.1#one.one.one.one" ];
-
     useNetworkd = true;
-
-    interfaces = {
-      enp0s31f6.useDHCP = true;
-      wlan0.useDHCP = true;
-    };
   };
 
   systemd.network.wait-online.anyInterface = true;
@@ -134,4 +126,6 @@
 
     home.stateVersion = "22.05";
   };
+
+  virtualisation.podman.enable = true;
 }
