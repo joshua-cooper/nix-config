@@ -11,6 +11,7 @@
       "--prompt ''"
       "--prefix '➜'"
       "--center"
+      "--fixed-height"
       "--width-factor 0.45"
       "--tb #1d2021"
       "--tf #ebdbb2"

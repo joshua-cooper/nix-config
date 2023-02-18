@@ -1,4 +1,6 @@
 {
+  bemenu = import ./bemenu;
+
   emoji-picker = import ./emoji-picker;
 
   devbox = import ./devbox;
