@@ -15,7 +15,7 @@
       set -g status-keys emacs
       set -g status-left "[#{=18:session_name}] "
       set -g status-left-length 21
-      set -g status-right ""
+      set -g status-right '#(git -C #{pane_current_path} rev-parse --abbrev-ref HEAD)'
       set -g mouse on
       set -g renumber-windows on
       set -g set-titles on
