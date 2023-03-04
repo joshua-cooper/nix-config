@@ -8,11 +8,11 @@ final: prev:
     src = prev.fetchFromGitHub {
       owner = "joshua-cooper";
       repo = "sustas";
-      rev = "933c112d4cc59b6e3b2733a6b36785532026790d";
-      sha256 = "sha256-LIA34PiXFGtC/Ku8anklil6U9AVfaQW25/038OUp3PI=";
+      rev = "afeebcbdfd804a32b230c192db8813dcd340ade6";
+      sha256 = "sha256-1FOaZOlX1PwnYrL3asG9i2Lo1Z9nh0AKKkvIIef7Gps=";
     };
 
-    cargoSha256 = "sha256-/nkBJTf55+DtVzBH4KGmPWdXficr/E4UQrs5KFsyE08=";
+    cargoSha256 = "sha256-pZMno4gtPgFXsgnTvkf1j3mpi7Mykx/NhorceiP4P88=";
 
     meta = with prev.lib; {
       description = "A tool to generate desktop status lines";

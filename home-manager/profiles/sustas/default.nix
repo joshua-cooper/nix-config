@@ -9,17 +9,11 @@
 
       [[modules]]
       kind = "wifi"
-
-      [[modules]]
-      kind = "bluetooth_device"
-      address = "38:18:4C:4C:BC:29"
-
-      [[modules]]
-      kind = "bluetooth"
-      address = "1C:99:57:7D:F1:D5"
+      interface = "wlan0"
 
       [[modules]]
       kind = "battery"
+      name = "BAT0"
 
       [[modules]]
       kind = "clock"
