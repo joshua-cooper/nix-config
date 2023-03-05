@@ -19,6 +19,7 @@
   home.shellAliases = {
     g = "git";
     gs = "git status";
+    gc = "git commit";
     gd = "git diff";
     gl = "git log";
     gf = "git fetch";
