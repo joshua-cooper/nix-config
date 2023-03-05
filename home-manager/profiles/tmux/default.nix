@@ -19,7 +19,7 @@ let
 
     [ -z "$project" ] && exit 1
 
-    session=$(echo "$project" | cut -d " " -f 1 | sed "s/\./_/g")
+    session=$(echo "$project" | cut -d " " -f 1 | sed "s/\.\|:/_/g")
     dir=$(echo "$project" | cut -d " " -f 2)
     repo=$(echo "$project" | cut -d " " -f 3)
 
@@ -27,14 +27,16 @@ let
       mkdir -p "$dir" || exit 1
     fi
 
-    tmux new -d -s "$session" -c "$dir"
+    if ! tmux has -t "=$session" 2> /dev/null; then
+      tmux new -d -s "$session" -c "$dir"
+    fi
 
     if [ -n "$repo" ] && [ -z "$(ls -A "$dir")" ]; then
       tmux new-window -n "clone" -t "$session" git clone --recurse-submodules -j8 "$repo" "$dir"
     fi
 
     if [ -z "$TMUX" ]; then
-      tmux attach -t "$session"
+      tmux attach -t "$session" > /dev/null
     else
       tmux switch -t "$session"
     fi
