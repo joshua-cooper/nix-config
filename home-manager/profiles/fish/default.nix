@@ -146,6 +146,32 @@ in
           return 1
         '';
       };
+
+      ns = {
+        body = ''
+          for package in $argv
+            set -a packages "nixpkgs#$package"
+          end
+
+          if not set -q packages
+            echo "Error: no packages were specified"
+            return 1
+          end
+
+          nix shell $packages
+        '';
+      };
+
+      nr = {
+        body = ''
+          if not set -q argv[1]
+            echo "Error: no command was specified"
+            return 1
+          end
+
+          nix run nixpkgs#$argv[1] -- $argv[2..]
+        '';
+      };
     };
   };
 }
