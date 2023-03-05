@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  programs.mako = {
+  services.mako = {
     enable = true;
     maxVisible = 5;
     anchor = "bottom-right";
