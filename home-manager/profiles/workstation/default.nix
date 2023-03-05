@@ -27,6 +27,7 @@
     ../playerctl
     ../pointer-cursor
     ../qutebrowser
+    ../shell-aliases
     ../sustas
     ../sway
     ../swayidle
