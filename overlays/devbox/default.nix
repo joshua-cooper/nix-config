@@ -22,6 +22,7 @@ final: prev:
       --ro-bind /etc/static/ssl/certs /etc/static/ssl/certs \
       --ro-bind "$XDG_CONFIG_HOME/nvim" "$XDG_CONFIG_HOME/nvim" \
       --ro-bind "$XDG_CONFIG_HOME/fish" "$XDG_CONFIG_HOME/fish" \
+      --ro-bind "$GNUPGHOME" "$GNUPGHOME" \
       --bind "$PWD" "$PWD" \
       --setenv DEVBOX "$PWD" \
       "$SHELL"
