@@ -15,7 +15,7 @@ let
   '';
 
   tf = pkgs.writeShellScriptBin "tf" ''
-    project=$(cat ~/projects | ${pkgs.fzf}/bin/fzf --reverse --height 15)
+    project=$(cat ~/projects | ${pkgs.fzf}/bin/fzf --reverse)
 
     [ -z "$project" ] && exit 1
 
