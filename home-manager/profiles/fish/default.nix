@@ -1,6 +1,22 @@
+let
+  try = file: command: args: ''
+    if test -f "${file}"
+      if type -q "${command}"
+        ${command} ${args}
+        return 0
+      else
+        echo "${file} exists but ${command} is not installed"
+      end
+    end
+  '';
+in
 {
   programs.fish = {
     enable = true;
+
+    interactiveShellInit = ''
+      bind \ep tf
+    '';
 
     functions = {
       fish_prompt = {
@@ -75,6 +91,48 @@
           end
 
           set_color normal
+        '';
+      };
+
+      r = {
+        body = ''
+          ${try "Cargo.lock" "cargo" "run"}
+          ${try "pnpm-lock.yaml" "pnpm" "start"}
+          ${try "yarn.lock" "yarn" "start"}
+          ${try "package-lock.json" "npm" "start"}
+          echo "Failed to determine run command"
+          return 1
+        '';
+      };
+
+      d = {
+        body = ''
+          ${try "Cargo.lock" "cargo-watch" "-cx run"}
+          ${try "pnpm-lock.yaml" "pnpm" "run dev"}
+          ${try "yarn.lock" "yarn" "dev"}
+          ${try "package-lock.json" "npm" "run dev"}
+          echo "Failed to determine dev command"
+          return 1
+        '';
+      };
+
+      c = {
+        body = ''
+          ${try "Cargo.lock" "cargo-clippy" ""}
+          ${try "Cargo.lock" "cargo" "check"}
+          echo "Failed to determine check command"
+          return 1
+        '';
+      };
+
+      b = {
+        body = ''
+          ${try "Cargo.lock" "cargo" "build"}
+          ${try "pnpm-lock.yaml" "pnpm" "run build"}
+          ${try "yarn.lock" "yarn" "build"}
+          ${try "package-lock.json" "npm" "run build"}
+          echo "Failed to determine build command"
+          return 1
         '';
       };
     };
