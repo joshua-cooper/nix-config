@@ -45,7 +45,6 @@ in
       (opt telescope-ui-select-nvim)
       (opt vim-fugitive)
       null-ls-nvim
-      nvim-treesitter.withAllGrammars
 
       # Themes
       gruvbox-nvim
@@ -53,6 +52,40 @@ in
 
       # Language support
       vim-nix
+      dhall-vim
+
+      (nvim-treesitter.withPlugins (plugins: with plugins; [
+        astro
+        bash
+        css
+        dockerfile
+        fish
+        git_rebase
+        gitattributes
+        gitcommit
+        gitignore
+        help
+        html
+        ini
+        javascript
+        jsdoc
+        json
+        ledger
+        lua
+        markdown
+        markdown_inline
+        nix
+        prisma
+        regex
+        rust
+        sql
+        svelte
+        toml
+        tsx
+        typescript
+        vim
+        yaml
+      ]))
     ];
   };
 }
