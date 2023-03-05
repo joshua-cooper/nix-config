@@ -85,7 +85,8 @@ in
       bind % split-window -h -c "#{pane_current_path}"
       bind c new-window -c "#{pane_current_path}"
 
-      bind -n M-p popup -E "${tf}/bin/tf"
+      bind -n M-p popup -E -w 90% -h 75% -T "#[align=centre] Project " "${tf}/bin/tf"
+
       bind -n M-l switch -l
 
       bind -n M-1 select-window -t 1
