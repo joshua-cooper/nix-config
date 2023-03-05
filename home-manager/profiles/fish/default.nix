@@ -125,6 +125,17 @@ in
         '';
       };
 
+      t = {
+        body = ''
+          ${try "Cargo.lock" "cargo" "test"}
+          ${try "pnpm-lock.yaml" "pnpm" "test"}
+          ${try "yarn.lock" "yarn" "test"}
+          ${try "package-lock.json" "npm" "test"}
+          echo "Failed to determine test command"
+          return 1
+        '';
+      };
+
       b = {
         body = ''
           ${try "Cargo.lock" "cargo" "build"}
