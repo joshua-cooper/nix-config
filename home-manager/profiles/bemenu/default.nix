@@ -13,6 +13,7 @@
       "--center"
       "--fixed-height"
       "--width-factor 0.45"
+      "--border 2"
       "--tb #1d2021"
       "--tf #ebdbb2"
       "--fb #1d2021"
