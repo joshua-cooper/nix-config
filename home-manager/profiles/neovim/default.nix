@@ -36,14 +36,13 @@ in
     ];
     plugins = with pkgs.vimPlugins; [
       # Base
-      (opt comment-nvim)
-      (opt dirbuf-nvim)
-      (opt neogit)
-      (opt nvim-surround)
-      (opt telescope-fzf-native-nvim)
-      (opt telescope-nvim)
-      (opt telescope-ui-select-nvim)
-      (opt vim-fugitive)
+      comment-nvim
+      dirbuf-nvim
+      nvim-surround
+      telescope-fzf-native-nvim
+      telescope-nvim
+      telescope-ui-select-nvim
+      vim-fugitive
       null-ls-nvim
 
       # Themes
