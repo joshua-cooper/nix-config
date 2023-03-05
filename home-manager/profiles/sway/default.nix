@@ -30,13 +30,25 @@ let
     fi
   '';
 
-  workspace-switcher = pkgs.writeShellScriptBin "workspace-switcher" ''
+  switch-workspace = pkgs.writeShellScriptBin "switch-workspace" ''
     set -eu
 
-    workspace=$(swaymsg -t get_workspaces | ${pkgs.jq}/bin/jq -r ".[].name" | sort | ${pkgs.bemenu}/bin/bemenu -p "Workspace")
+    workspace=$(swaymsg -t get_workspaces | ${pkgs.jq}/bin/jq -r ".[].name" | sort | ${pkgs.bemenu}/bin/bemenu -p "Focus")
 
     if [ -n "$workspace" ]; then
       swaymsg workspace "$workspace"
+    else
+      exit 1
+    fi
+  '';
+
+  rename-workspace = pkgs.writeShellScriptBin "rename-workspace" ''
+    set -eu
+
+    name=$(printf | bemenu -p "Rename" -l 0)
+
+    if [ -n "$name" ]; then
+      swaymsg rename workspace to "$name"
     else
       exit 1
     fi
@@ -192,10 +204,14 @@ in
           "shift+7" = "rename workspace to 7";
           "shift+8" = "rename workspace to 8";
           "shift+9" = "rename workspace to 9";
+          "p" = "workspace prev_on_output";
+          "n" = "workspace next_on_output";
           "h" = "move workspace to left";
           "j" = "move workspace to down";
           "k" = "move workspace to up";
           "l" = "move workspace to right";
+          "f" = "mode default; exec ${switch-workspace}/bin/switch-workspace";
+          "r" = "mode default; exec ${rename-workspace}/bin/rename-workspace";
         };
       };
 
@@ -259,7 +275,6 @@ in
         "Mod4+7" = "workspace number 7";
         "Mod4+8" = "workspace number 8";
         "Mod4+9" = "workspace number 9";
-        "Mod4+shift+w" = "exec ${workspace-switcher}/bin/workspace-switcher";
 
         "Mod4+shift+1" = "move container to workspace number 1";
         "Mod4+shift+2" = "move container to workspace number 2";
