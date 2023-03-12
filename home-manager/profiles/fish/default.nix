@@ -29,17 +29,17 @@ in
 
           echo -n "$(set_color blue)$(prompt_pwd)"
 
-          set_color -o
-
-          if fish_is_root_user
-            echo -n " $(set_color red)#"
-          end
-
           if test $cmd_status -ne 0
             echo -n " $(set_color red)$cmd_status"
           end
 
-          echo -n " $(set_color red)❯$(set_color yellow)❯$(set_color green)❯"
+          set_color -o
+
+          if fish_is_root_user
+            echo -n " $(set_color red)#"
+          else
+            echo -n " $(set_color green)\$"
+          end
 
           echo -n " "
 
