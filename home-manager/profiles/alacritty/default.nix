@@ -3,7 +3,12 @@
     enable = true;
 
     settings = {
-      font.size = 9;
+      font = {
+        size = 9;
+        normal = {
+          family = "Rec Mono Casual";
+        };
+      };
 
       window.padding = {
         x = 8;
