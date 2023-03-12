@@ -5,6 +5,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
     ../../profiles/laptop
     ../../profiles/mosh
+    ../../profiles/silent-boot
     ../../profiles/sshd
   ];
 
