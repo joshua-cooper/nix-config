@@ -122,7 +122,7 @@
 
   home-manager.users.josh = {
     imports = [
-      ../../../home-manager/profiles/workstation
+      ../../../home/profiles/workstation
     ];
 
     home.stateVersion = "22.05";

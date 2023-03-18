@@ -51,6 +51,6 @@
 
       nixosConfigurations = lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
 
-      homeConfigurations = lib.mapAttrs mkHomeConfiguration (import ./home-manager/configurations);
+      homeConfigurations = lib.mapAttrs mkHomeConfiguration (import ./home/configurations);
     };
 }
