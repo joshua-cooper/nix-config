@@ -49,8 +49,6 @@
 
       overlays = import ./overlays;
 
-      templates = import ./templates;
-
       nixosConfigurations = lib.mapAttrs mkNixosConfiguration (import ./nixos/configurations);
 
       homeConfigurations = lib.mapAttrs mkHomeConfiguration (import ./home-manager/configurations);
