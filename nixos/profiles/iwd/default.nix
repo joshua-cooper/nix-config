@@ -4,6 +4,7 @@
   networking.wireless.iwd = {
     enable = true;
     settings = {
+      General.AddressRandomization = "network";
       Settings.AlwaysRandomizeAddress = true;
     };
   };
