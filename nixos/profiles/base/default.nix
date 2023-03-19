@@ -7,6 +7,8 @@
     ../../modules
   ];
 
+  boot.initrd.systemd.enable = true;
+
   environment = {
     defaultPackages = with pkgs; [ neovim gitMinimal ];
     variables.EDITOR = "nvim";
