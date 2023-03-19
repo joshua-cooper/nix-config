@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -61,7 +61,6 @@
   networking = {
     hostName = "x13";
     hostId = "c69bb763";
-    nameservers = [ "1.1.1.1#one.one.one.one" ];
   };
 
   environment.persistence."/state" = {
@@ -101,25 +100,6 @@
   };
 
   state.enable = true;
-
-  users = {
-    mutableUsers = false;
-
-    users.josh = {
-      isNormalUser = true;
-      passwordFile = "/nix/passwords/josh";
-      extraGroups = [ "wheel" "i2c" "docker" ];
-      shell = pkgs.fish;
-    };
-  };
-
-  home-manager.users.josh = {
-    imports = [
-      ../../../home/profiles/workstation
-    ];
-
-    home.stateVersion = "22.05";
-  };
 
   virtualisation.podman.enable = true;
 }
