@@ -11,6 +11,7 @@
     ../ssh
     ../sway
     ../systemd-boot
+    ../systemd-networkd
     ../systemd-resolved
     ../xdg-desktop-portal
     ../zfs

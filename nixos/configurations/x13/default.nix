@@ -62,10 +62,7 @@
     hostName = "x13";
     hostId = "c69bb763";
     nameservers = [ "1.1.1.1#one.one.one.one" ];
-    useNetworkd = true;
   };
-
-  systemd.network.wait-online.anyInterface = true;
 
   environment.persistence."/state" = {
     directories = [
