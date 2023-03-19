@@ -65,10 +65,6 @@
   };
 
   environment.persistence."/state" = {
-    directories = [
-      "/var/log"
-    ];
-
     users.josh = {
       directories = [
         "repositories"

@@ -19,11 +19,12 @@
   state = {
     directories = [
       "/var/lib/nixos"
+      "/var/lib/systemd"
+      "/var/log"
     ];
 
     files = [
       "/etc/machine-id"
-      "/var/lib/systemd/timesync/clock"
     ];
   };
 }
