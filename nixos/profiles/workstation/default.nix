@@ -7,6 +7,7 @@
     ../home-manager
     ../nix
     ../pipewire
+    ../plymouth
     ../ssh
     ../sway
     ../systemd-boot
