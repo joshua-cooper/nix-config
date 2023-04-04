@@ -44,6 +44,7 @@ in
       telescope-ui-select-nvim
       vim-fugitive
       null-ls-nvim
+      playground # nvim-treesitter-playground
 
       # Themes
       gruvbox-nvim
