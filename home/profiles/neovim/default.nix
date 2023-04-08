@@ -64,7 +64,6 @@ in
         gitattributes
         gitcommit
         gitignore
-        help
         html
         ini
         javascript
