@@ -5,8 +5,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = args.buf })
     vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { buffer = args.buf })
-    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = args.buf })
-    vim.keymap.set("v", "<leader>la", vim.lsp.buf.range_code_action, { buffer = args.buf })
+    vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = args.buf })
 
     vim.keymap.set("n", "<leader>lr", function()
       vim.cmd.Telescope("lsp_references")
