@@ -26,6 +26,7 @@
       "--sf #ebdbb2"
       "--scb #1d2021"
       "--scf #ebdbb2"
+      "--bdr #d65d0e"
     ];
   };
 
