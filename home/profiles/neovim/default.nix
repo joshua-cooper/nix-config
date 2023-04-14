@@ -1,12 +1,5 @@
 { pkgs, ... }:
 
-let
-  opt = plugin: {
-    inherit plugin;
-    type = "lua";
-    optional = true;
-  };
-in
 {
   xdg.configFile = {
     "nvim/init.lua".source = ./init.lua;
