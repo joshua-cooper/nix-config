@@ -9,7 +9,7 @@
       address = "josh@cooper.dev";
       userName = "josh@cooper.dev";
       realName = "Josh Cooper";
-      passwordCommand = "${pkgs.pass}/bin/pass fastmail/app-password";
+      passwordCommand = "${pkgs.pass}/bin/pass fastmail/josh@cooper.dev/app-password";
       aerc.enable = true;
       msmtp.enable = true;
       mbsync = {
