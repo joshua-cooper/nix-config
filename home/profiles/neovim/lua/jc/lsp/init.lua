@@ -32,5 +32,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.buf.format()
       end,
     })
+
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      group = args.group,
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      group = args.group,
+      buffer = args.buf,
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+    })
   end,
 })
