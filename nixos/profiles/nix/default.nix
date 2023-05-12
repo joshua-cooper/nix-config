@@ -1,7 +1,9 @@
-{ inputs, lib, ... }:
+{ inputs, lib, pkgs, ... }:
 
 {
   nix = {
+    package = pkgs.nixUnstable;
+
     registry = lib.mapAttrs (name: flake: { inherit flake; }) inputs;
 
     gc = {
