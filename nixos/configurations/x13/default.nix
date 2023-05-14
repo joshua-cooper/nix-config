@@ -83,8 +83,6 @@
 
   system.stateVersion = "22.05";
 
-  time.timeZone = "Asia/Seoul";
-
   services.sanoid = {
     enable = true;
 
