@@ -38,6 +38,14 @@
       vim-fugitive
       null-ls-nvim
       playground # nvim-treesitter-playground
+      luasnip
+      which-key-nvim
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp_luasnip
 
       # Themes
       gruvbox-nvim

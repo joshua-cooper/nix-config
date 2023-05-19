@@ -1,10 +1,10 @@
-local utils = require("jc.utils")
+local utils = require("xos.utils")
 
 vim.keymap.set({ "n", "v" }, "<leader><leader>", ":")
 vim.keymap.set("n", "<leader><tab>", "<cmd>buffer #<cr>")
 vim.keymap.set("n", "<leader>w", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>confirm quitall<cr>")
-vim.keymap.set("n", "<leader>d", "<cmd>confirm bdelete<cr>")
+vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics<cr>")
 vim.keymap.set("n", "<m-n>", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<m-N>", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)

@@ -1,4 +1,6 @@
-require("telescope").setup({
+local telescope = require("telescope")
+
+telescope.setup({
   defaults = {
     sorting_strategy = "ascending",
     layout_config = {
@@ -9,6 +11,8 @@ require("telescope").setup({
         mirror = false,
       },
     },
+    border = true,
+    results_title = false,
     preview = {
       filesize_limit = 0.5,
     },
@@ -37,17 +41,12 @@ require("telescope").setup({
         ".git/",
       },
     },
-  },
-  extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown({}),
+    git_files = {
+      show_untracked = true,
     },
   },
 })
 
-vim.cmd.packadd("telescope-fzf-native.nvim")
-vim.cmd.packadd("telescope-ui-select.nvim")
-
-require("telescope").load_extension("try_git_files")
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("ui-select")
+telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
+telescope.load_extension("try_git_files")
