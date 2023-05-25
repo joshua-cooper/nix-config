@@ -9,18 +9,27 @@ if utils.is_executable("deadnix") then
 end
 
 if utils.is_executable("prettierd") then
-  table.insert(sources, null_ls.builtins.formatting.prettierd.with({
+  table.insert(
+    sources,
+    null_ls.builtins.formatting.prettierd.with({
       extra_filetypes = { "svelte" },
-  }))
+    })
+  )
 end
 
 if utils.is_executable("eslint_d") then
-  table.insert(sources, null_ls.builtins.code_actions.eslint_d.with({
+  table.insert(
+    sources,
+    null_ls.builtins.code_actions.eslint_d.with({
       extra_filetypes = { "svelte" },
-  }))
-  table.insert(sources, null_ls.builtins.diagnostics.eslint_d.with({
+    })
+  )
+  table.insert(
+    sources,
+    null_ls.builtins.diagnostics.eslint_d.with({
       extra_filetypes = { "svelte" },
-  }))
+    })
+  )
 end
 
 null_ls.setup({
