@@ -46,6 +46,7 @@
       cmp-path
       cmp-cmdline
       cmp_luasnip
+      mason-nvim
 
       # Themes
       gruvbox-nvim
