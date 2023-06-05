@@ -11,7 +11,6 @@ function M.on_attach(fn)
   return function(client, buf)
     if client.server_capabilities.documentFormattingProvider then
       vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("LspDocumentFormatting", {}),
         buffer = buf,
         callback = function()
           vim.lsp.buf.format({
@@ -32,7 +31,6 @@ function M.on_attach(fn)
 
     if client.server_capabilities.codeLensProvider then
       vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        group = vim.api.nvim_create_augroup("LspCodeLens", {}),
         buffer = buf,
         callback = function()
           vim.lsp.codelens.refresh()
