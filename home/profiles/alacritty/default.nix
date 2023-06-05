@@ -4,7 +4,7 @@
 
     settings = {
       font = {
-        size = 9;
+        size = 7;
         normal = {
           family = "Rec Mono Casual";
         };
