@@ -1,6 +1,5 @@
 {
   imports = [
     ./state
-    ./zfs-backup
   ];
 }

@@ -92,11 +92,24 @@
     };
   };
 
-  services.zfs-backup = {
-    enable = true;
-  };
-
   state.enable = true;
 
   virtualisation.podman.enable = true;
+
+  services.restic.backups = {
+    backblaze = {
+      initialize = true;
+      passwordFile = "/nix/passwords/restic-password";
+      environmentFile = "/nix/passwords/restic.env";
+      repository = "s3:s3.us-west-000.backblazeb2.com/backups-x13-844c8c7a";
+      paths = [
+        "/state"
+      ];
+      exclude = [
+        "target/"
+        "node_modules/"
+        ".direnv/"
+      ];
+    };
+  };
 }
