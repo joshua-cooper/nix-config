@@ -15,6 +15,7 @@
     ../systemd-boot
     ../systemd-networkd
     ../systemd-resolved
+    ../tailscale
     ../xdg-desktop-portal
     ../zfs
   ];
