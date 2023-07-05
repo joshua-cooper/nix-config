@@ -40,6 +40,7 @@
   home.packages = with pkgs; [
     devbox
     imv
+    inkscape
     libnotify
     signal-desktop
     vscodium
