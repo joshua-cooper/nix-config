@@ -1,14 +1,14 @@
-local utils = require("xos.utils")
-local lsp = require("xos.lsp")
+local fs = require("jc.fs")
+local lsp = require("jc.lsp")
 local null_ls = require("null-ls")
 
 local sources = {}
 
-if utils.is_executable("deadnix") then
+if fs.is_executable("deadnix") then
   table.insert(sources, null_ls.builtins.diagnostics.deadnix)
 end
 
-if utils.is_executable("prettierd") then
+if fs.is_executable("prettierd") then
   table.insert(
     sources,
     null_ls.builtins.formatting.prettierd.with({
@@ -17,7 +17,7 @@ if utils.is_executable("prettierd") then
   )
 end
 
-if utils.is_executable("eslint_d") then
+if fs.is_executable("eslint_d") then
   table.insert(
     sources,
     null_ls.builtins.code_actions.eslint_d.with({

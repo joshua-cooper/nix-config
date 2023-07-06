@@ -37,7 +37,6 @@
       telescope-ui-select-nvim
       vim-fugitive
       null-ls-nvim
-      playground # nvim-treesitter-playground
       luasnip
       which-key-nvim
       nvim-cmp
@@ -51,6 +50,8 @@
       # Themes
       gruvbox-nvim
       tokyonight-nvim
+      catppuccin-nvim
+      onedark-nvim
 
       # Language support
       vim-nix

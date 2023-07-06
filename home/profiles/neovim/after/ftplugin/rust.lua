@@ -1,1 +1,1 @@
-require("xos.lsp.rust_analyzer").start()
+require("jc.lsp.rust_analyzer").start()

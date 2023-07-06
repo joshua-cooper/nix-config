@@ -1,1 +1,1 @@
-require("xos.lsp.tsserver").start()
+require("jc.lsp.tsserver").start()

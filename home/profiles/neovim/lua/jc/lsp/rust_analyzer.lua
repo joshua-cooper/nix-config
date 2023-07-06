@@ -1,10 +1,11 @@
-local lsp = require("xos.lsp")
-local utils = require("xos.utils")
+local fs = require("jc.fs")
+local lsp = require("jc.lsp")
+local runners = require("jc.runners")
 
 local M = {}
 
-function M.reload_workspace()
-  vim.lsp.buf_request(0, "rust-analyzer/reloadWorkspace", nil, function(err)
+function M.reload_workspace(buf)
+  vim.lsp.buf_request(buf or 0, "rust-analyzer/reloadWorkspace", nil, function(err)
     if err then
       error(tostring(err))
     else
@@ -13,42 +14,50 @@ function M.reload_workspace()
   end)
 end
 
-function M.expand_macro()
-  vim.lsp.buf_request(0, "rust-analyzer/expandMacro", vim.lsp.util.make_position_params(), function(_, result)
+function M.expand_macro(buf)
+  vim.lsp.buf_request(buf or 0, "rust-analyzer/expandMacro", vim.lsp.util.make_position_params(), function(_, result)
     if not result then
       vim.notify("No macro under the cursor")
       return
     end
 
-    local bufnr = vim.api.nvim_create_buf(false, true)
-    vim.api.nvim_buf_set_option(bufnr, "filetype", "rust")
-    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, vim.split(result.expansion, "\n", true))
-    vim.api.nvim_set_current_buf(bufnr)
+    local b = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_buf_set_option(b, "filetype", "rust")
+    vim.api.nvim_buf_set_lines(b, 0, -1, false, vim.split(result.expansion, "\n", true))
+    vim.api.nvim_set_current_buf(b)
   end)
 end
 
 function M.start()
+  if not fs.is_executable("rust-analyzer") then
+    return
+  end
+
   vim.lsp.start({
     name = "rust-analyzer",
     cmd = { "rust-analyzer" },
-    capabilities = lsp.capabilities(),
     settings = {
       ["rust-analyzer"] = {
         cargo = {
           features = "all",
         },
         check = {
-          command = utils.is_executable("cargo-clippy") and "clippy" or "check",
+          command = fs.is_executable("cargo-clippy") and "clippy" or "check",
         },
       },
     },
+    capabilities = lsp.capabilities(),
     on_attach = lsp.on_attach(function(client, buf)
-      vim.keymap.set("n", "<leader>lr", M.reload_workspace, {
+      vim.keymap.set("n", "<leader>lr", function()
+        M.reload_workspace(buf)
+      end, {
         buffer = buf,
         desc = "Reload workspace",
       })
 
-      vim.keymap.set("n", "<leader>lm", M.expand_macro, {
+      vim.keymap.set("n", "<leader>lm", function()
+        M.expand_macro(buf)
+      end, {
         buffer = buf,
         desc = "Expand macro",
       })
@@ -74,7 +83,7 @@ vim.lsp.commands["rust-analyzer.runSingle"] = function(command)
     table.insert(c, arg)
   end
 
-  utils.run_command({
+  runners.terminal({
     command = c,
     cwd = args.workspaceRoot,
   })
