@@ -10,6 +10,19 @@ function M.capabilities()
 end
 
 local function common_on_attach(client, buf)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buf,
+      callback = function()
+        vim.lsp.buf.format({
+          filter = function(client)
+            return client.name ~= "tsserver"
+          end,
+        })
+      end,
+    })
+  end
+
   if client.server_capabilities.hoverProvider then
     vim.keymap.set("n", "K", vim.lsp.buf.hover, {
       buffer = buf,
