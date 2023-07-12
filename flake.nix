@@ -4,6 +4,10 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nur.url = "github:nix-community/nur";
     impermanence.url = "github:nix-community/impermanence";
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
