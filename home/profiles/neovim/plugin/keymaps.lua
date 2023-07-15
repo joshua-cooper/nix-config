@@ -4,9 +4,6 @@ vim.keymap.set("n", "<leader>w", "<cmd>write<cr>")
 vim.keymap.set("n", "<leader>q", "<cmd>confirm quitall<cr>")
 vim.keymap.set("n", "<leader>k", "<cmd>confirm bdelete<cr>")
 
--- Folds
-vim.keymap.set("n", "<tab>", "za", { desc = "Toggle fold" })
-
 -- Readline
 vim.keymap.set({ "i", "c" }, "<c-b>", "<left>")
 vim.keymap.set({ "i", "c" }, "<c-f>", "<right>")
