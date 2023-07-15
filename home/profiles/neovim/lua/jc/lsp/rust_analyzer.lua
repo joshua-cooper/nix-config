@@ -44,6 +44,11 @@ function M.start()
         check = {
           command = fs.is_executable("cargo-clippy") and "clippy" or "check",
         },
+        files = {
+          excludeDirs = {
+            ".direnv"
+          },
+        },
       },
     },
     capabilities = lsp.capabilities(),
