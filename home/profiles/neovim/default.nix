@@ -38,6 +38,7 @@
       vim-fugitive
       null-ls-nvim
       luasnip
+      fidget-nvim
       which-key-nvim
       nvim-cmp
       cmp-nvim-lsp
