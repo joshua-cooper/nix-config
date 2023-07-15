@@ -8,6 +8,7 @@
     ../../profiles/mosh
     ../../profiles/silent-boot
     ../../profiles/sshd
+    ../../profiles/gitolite
   ];
 
   boot = {
