@@ -13,7 +13,7 @@ function M.organize_imports(buf)
 end
 
 function M.start()
-  if not fs.is_executable("tsserver") then
+  if not fs.is_executable("typescript-language-server") then
     return
   end
 
