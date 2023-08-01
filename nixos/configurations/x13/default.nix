@@ -85,6 +85,8 @@
 
   system.stateVersion = "22.05";
 
+  services.logind.lidSwitchExternalPower = "lock";
+
   services.sanoid = {
     enable = true;
 
