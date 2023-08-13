@@ -15,30 +15,30 @@ let
   '';
 
   tf = pkgs.writeShellScriptBin "tf" ''
-    project=$(cat ~/projects | ${pkgs.fzf}/bin/fzf --reverse)
+    set -eu
 
-    [ -z "$project" ] && exit 1
+    REPO_DIR=''${REPO_DIR:-~/repositories}
+    DIR="''${1:-$REPO_DIR}" 
 
-    session=$(echo "$project" | cut -d " " -f 1 | sed "s/\.\|:/_/g")
-    dir=$(echo "$project" | cut -d " " -f 2)
-    repo=$(echo "$project" | cut -d " " -f 3)
+    cd "$DIR" || exit 1
 
-    if [ ! -d "$dir" ]; then
-      mkdir -p "$dir" || exit 1
+    repo=$(
+      ${pkgs.fd}/bin/fd --hidden --type directory --glob .git \
+        | sed  -e '/^\.git\/$/d' -e 's/\/\.git\/$//' \
+        | ${pkgs.fzf}/bin/fzf --reverse --no-scrollbar --no-separator --color=bg+:-1
+    )
+
+    [ -z "$repo" ] && exit 1
+    [ ! -d "$repo" ] && exit 1
+
+    if ! tmux has -t "=$repo" 2> /dev/null; then
+      tmux new -d -s "$repo" -c "$DIR/$repo"
     fi
 
-    if ! tmux has -t "=$session" 2> /dev/null; then
-      tmux new -d -s "$session" -c "$dir"
-    fi
-
-    if [ -n "$repo" ] && [ -z "$(ls -A "$dir")" ]; then
-      tmux new-window -n "clone" -t "$session" git clone --recurse-submodules -j8 "$repo" "$dir"
-    fi
-
-    if [ -z "$TMUX" ]; then
-      tmux attach -t "$session" > /dev/null
+    if [ -z "''${TMUX:-}" ]; then
+      tmux attach -t "$repo" > /dev/null
     else
-      tmux switch -t "$session"
+      tmux switch -t "$repo"
     fi
   '';
 in
