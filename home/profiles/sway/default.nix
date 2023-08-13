@@ -117,7 +117,7 @@ in
 
       floating = {
         modifier = "Mod4";
-        titlebar = true;
+        titlebar = false;
         border = 2;
       };
 

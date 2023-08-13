@@ -96,6 +96,8 @@
     };
   };
 
+  services.dbus.packages = [ pkgs.gcr ];
+
   state.enable = true;
 
   virtualisation.podman.enable = true;

@@ -47,4 +47,6 @@
     vscodium
     wl-clipboard
   ];
+
+  pinentry.gnome.enable = true;
 }

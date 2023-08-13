@@ -15,7 +15,7 @@ in
       };
 
       default = mkOption {
-        type = types.enum [ "curses" "bemenu" ];
+        type = types.enum [ "curses" "bemenu" "gnome" ];
         example = "bemenu";
         default = "curses";
         description = "The pinentry interface to use by default";
@@ -28,6 +28,10 @@ in
       bemenu = {
         enable = mkEnableOption "pinentry-bemenu config generation for <option>home.pinentry</option>";
       };
+
+      gnome = {
+        enable = mkEnableOption "pinentry-gnome config generation for <option>home.pinentry</option>";
+      };
     };
   };
 
@@ -36,6 +40,7 @@ in
       pinentryBin = {
         curses = "${pkgs.pinentry-curses}/bin/pinentry-curses";
         bemenu = "${pkgs.pinentry-bemenu}/bin/pinentry-bemenu";
+        gnome = "${pkgs.pinentry-gnome}/bin/pinentry";
       };
 
       defaultPinentryBin = pinentryBin."${cfg.default}";
@@ -44,6 +49,8 @@ in
         "curses) exec ${pinentryBin.curses} \"$@\" ;;"
       ] ++ optionals cfg.bemenu.enable [
         "bemenu) exec ${pinentryBin.bemenu} \"$@\" ;;"
+      ] ++ optionals cfg.gnome.enable [
+        "gnome) exec ${pinentryBin.gnome} \"$@\" ;;"
       ] ++ [
         "*) exec ${defaultPinentryBin} \"$@\" ;;"
       ];
