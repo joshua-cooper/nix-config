@@ -246,6 +246,7 @@ in
         "Mod4+q" = "kill";
 
         "Mod4+f" = "fullscreen toggle";
+        "Mod4+g" = "gaps outer current toggle 60";
 
         "Mod4+space" = "focus mode_toggle";
         "Mod4+shift+space" = "floating toggle";
