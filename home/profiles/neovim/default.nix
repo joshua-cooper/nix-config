@@ -53,6 +53,7 @@
       tokyonight-nvim
       catppuccin-nvim
       onedark-nvim
+      vim-dim
 
       # Language support
       vim-nix
