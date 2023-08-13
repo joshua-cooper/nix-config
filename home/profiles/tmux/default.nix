@@ -69,7 +69,7 @@ in
       set -g status-interval 2
       set -g status-style "bg=default"
 
-      set -g status-left-length 20
+      set -g status-left-length 100
       set -g status-left "#[fg=default,bold]#S "
 
       set -g status-right-length 20
