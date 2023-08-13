@@ -13,5 +13,7 @@
 
   sustas = import ./sustas;
 
+  start-sway = import ./start-sway;
+
   sway = import ./sway;
 }

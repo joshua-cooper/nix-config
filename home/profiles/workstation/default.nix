@@ -44,6 +44,7 @@
     inkscape
     libnotify
     signal-desktop
+    start-sway
     vscodium
     wl-clipboard
   ];
