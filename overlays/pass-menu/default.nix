@@ -18,7 +18,7 @@ final: prev:
     }
 
     get_password() {
-      export PINENTRY_USER_DATA=bemenu
+      export PINENTRY_USER_DATA=gnome
 
       case "$1" in
         *otp*) ${prev.pass}/bin/pass otp "$choice" ;;
