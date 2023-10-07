@@ -22,6 +22,7 @@
         "browser.aboutwelcome.enabled" = false;
         "browser.startup.homepage" = "about:blank";
         "browser.uidensity" = 1;
+        "browser.tabs.inTitlebar" = 0;
       };
     };
   };
