@@ -30,8 +30,8 @@
     };
 
     theme = {
-      package = pkgs.gnome-themes-extra;
-      name = "Adwaita-dark";
+      package = pkgs.orchis;
+      name = "Orchis-Dark-Compact";
     };
   };
 
