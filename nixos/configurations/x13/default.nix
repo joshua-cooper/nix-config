@@ -3,7 +3,6 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x13
-    inputs.microvm.nixosModules.host
     ../../profiles/laptop
     ../../profiles/mosh
     ../../profiles/silent-boot
@@ -116,59 +115,6 @@
         "node_modules/"
         ".direnv/"
       ];
-    };
-  };
-
-  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-
-  networking.bridges = {
-    br0 = {
-      interfaces = [
-        # "enp0s31f6"
-        "vm-test"
-      ];
-    };
-  };
-
-  networking.interfaces.br0.ipv4.addresses = [{
-    address = "192.168.100.1";
-    prefixLength = 24;
-  }];
-
-  networking.nat.enable = true;
-  networking.nat.internalInterfaces = ["br0"];
-  networking.nat.externalInterface = "wlan0";
-
-  microvm.vms = {
-    vm-test = {
-      config = {
-        microvm.hypervisor = "firecracker";
-
-        microvm.interfaces = [{
-          type = "tap";
-          id = "vm-test";
-          mac = "02:00:00:00:00:01";
-        }];
-
-        networking.interfaces.eth0.ipv4.addresses = [{
-          address = "192.168.100.2";
-          prefixLength = 24;
-        }];
-
-        networking.defaultGateway = "192.168.100.1";
-
-        users.users.josh = {
-          isNormalUser = true;
-          password = "password";
-          extraGroups = [ "wheel" ];
-        };
-
-        services.openssh.enable = true;
-
-        environment.systemPackages = with pkgs; [
-          lf
-        ];
-      };
     };
   };
 }
