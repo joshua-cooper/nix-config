@@ -31,14 +31,16 @@ let
     [ -z "$repo" ] && exit 1
     [ ! -d "$repo" ] && exit 1
 
-    if ! tmux has -t "=$repo" 2> /dev/null; then
-      tmux new -d -s "$repo" -c "$DIR/$repo"
+    session="''${repo//[.:]/_}"
+
+    if ! tmux has -t "=$session" 2> /dev/null; then
+      tmux new -d -s "$session" -c "$DIR/$repo"
     fi
 
     if [ -z "''${TMUX:-}" ]; then
-      tmux attach -t "$repo" > /dev/null
+      tmux attach -t "$session" > /dev/null
     else
-      tmux switch -t "$repo"
+      tmux switch -t "$session"
     fi
   '';
 in
