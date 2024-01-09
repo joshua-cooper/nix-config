@@ -230,7 +230,7 @@ in
         "--locked XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play";
         "--locked XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
         "--locked XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-        "XF86Display" = "output eDP-1 toggle";
+        "--locked XF86Display" = "output eDP-1 toggle";
 
         "Mod4+return" = "exec ${pkgs.alacritty}/bin/alacritty";
         "--no-repeat Mod4+o" = "exec ${pkgs.bemenu}/bin/bemenu-run";
