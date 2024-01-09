@@ -11,6 +11,8 @@
 
   pass-menu = import ./pass-menu;
 
+  fd = import ./fd;
+
   sustas = import ./sustas;
 
   start-sway = import ./start-sway;
