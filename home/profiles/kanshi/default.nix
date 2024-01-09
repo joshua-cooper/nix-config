@@ -7,6 +7,7 @@
     profiles = {
       laptop.outputs = [{
         criteria = "eDP-1";
+        status = "enable";
       }];
 
       docked.outputs = [
@@ -18,6 +19,19 @@
         {
           criteria = "eDP-1";
           position = "320,1080";
+        }
+      ];
+
+      ar.outputs = [
+        {
+          criteria = "Nreal Air 2 Pro 0x00008800";
+          mode = "1920x1080@120Hz";
+          scale = 2.0;
+          position = "0,0";
+        }
+        {
+          criteria = "eDP-1";
+          position = "0,540";
         }
       ];
     };
