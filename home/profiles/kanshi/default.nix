@@ -26,12 +26,12 @@
         {
           criteria = "Nreal Air 2 Pro 0x00008800";
           mode = "1920x1080@120Hz";
-          scale = 2.0;
+          scale = 1.5;
           position = "0,0";
         }
         {
           criteria = "eDP-1";
-          position = "0,540";
+          position = "0,720";
         }
       ];
     };
