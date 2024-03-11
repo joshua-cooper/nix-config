@@ -40,7 +40,7 @@ in
       pinentryBin = {
         curses = "${pkgs.pinentry-curses}/bin/pinentry-curses";
         bemenu = "${pkgs.pinentry-bemenu}/bin/pinentry-bemenu";
-        gnome = "${pkgs.pinentry-gnome}/bin/pinentry";
+        gnome = "${pkgs.pinentry-gnome3}/bin/pinentry";
       };
 
       defaultPinentryBin = pinentryBin."${cfg.default}";
