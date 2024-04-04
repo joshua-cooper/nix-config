@@ -6,6 +6,7 @@
     ../alacritty
     ../base
     ../bemenu
+    ../darkman
     ../direnv
     ../email
     ../firefox

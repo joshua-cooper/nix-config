@@ -3,6 +3,8 @@
 
   emoji-picker = import ./emoji-picker;
 
+  darkman = import ./darkman;
+
   devbox = import ./devbox;
 
   neovim = import ./neovim;

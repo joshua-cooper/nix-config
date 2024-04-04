@@ -38,4 +38,21 @@
   home.pointerCursor.gtk.enable = true;
 
   wayland.windowManager.sway.wrapperFeatures.gtk = true;
+
+  services.darkman =
+    let
+      themeScript = theme: ''
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/interface/color-scheme "'prefer-${theme}'"
+      '';
+    in
+    {
+      lightModeScripts.gtk = themeScript "light";
+      darkModeScripts.gtk = themeScript "dark";
+    };
+
+  # ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
+  # xdg.systemDirs.data = [
+  #   "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+  # ];
 }
