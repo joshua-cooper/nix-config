@@ -65,7 +65,6 @@ in
     in
     mkIf cfg.enable {
       services.gpg-agent = {
-        pinentryFlavor = null;
         extraConfig = ''
           pinentry-program ${pinentry}/bin/pinentry
         '';
