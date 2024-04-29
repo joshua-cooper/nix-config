@@ -76,10 +76,10 @@ in
   programs.alacritty = {
     enable = true;
     settings = {
-      import = [
-        (tomlFormat.generate "default-theme.toml" darkTheme)
-        overrideThemePath
-      ];
+      # import = [
+      #   (tomlFormat.generate "default-theme.toml" darkTheme)
+      #   overrideThemePath
+      # ];
 
       font = {
         size = 7;
@@ -92,16 +92,18 @@ in
         x = 8;
         y = 8;
       };
+
+      colors = darkTheme.colors;
     };
   };
 
-  services.darkman = {
-    lightModeScripts.alacritty = updateScript lightTheme;
-    darkModeScripts.alacritty = updateScript darkTheme;
-  };
-
-  # Create the override theme file so Alacritty will watch it for changes.
-  home.activation.alacritty-override-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    [ ! -f  ${overrideThemePath} ] && run touch ${overrideThemePath}
-  '';
+  # services.darkman = {
+  #   lightModeScripts.alacritty = updateScript lightTheme;
+  #   darkModeScripts.alacritty = updateScript darkTheme;
+  # };
+  #
+  # # Create the override theme file so Alacritty will watch it for changes.
+  # home.activation.alacritty-override-theme = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #   [ ! -f  ${overrideThemePath} ] && run touch ${overrideThemePath}
+  # '';
 }
