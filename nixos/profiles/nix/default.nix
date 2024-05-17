@@ -2,7 +2,7 @@
 
 {
   nix = {
-    package = pkgs.nixUnstable;
+    package = pkgs.nixFlakes;
 
     registry = lib.mapAttrs (name: flake: { inherit flake; }) inputs;
 

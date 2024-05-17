@@ -30,5 +30,5 @@
     ];
   };
 
-  pinentry.bemenu.enable = true;
+  # pinentry.bemenu.enable = true;
 }
