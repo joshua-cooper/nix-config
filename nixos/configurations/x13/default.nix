@@ -117,4 +117,14 @@
       ];
     };
   };
+
+  networking.wireguard.interfaces.wg0 = {
+    ips = [ "10.100.0.3" ];
+    privateKeyFile = "/nix/passwords/wg0";
+    peers = [{
+      publicKey = "JndZzFFBkn30BTWQo2jJbLitX4gRSZhWFbF8Mf5egRo=";
+      allowedIPs = [ "10.100.0.1" ];
+      endpoint = "ide.cooper.dev:51820";
+    }];
+  };
 }
