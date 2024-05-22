@@ -24,7 +24,7 @@
 
       ar.outputs = [
         {
-          criteria = "Nreal Air 2 Pro 0x00008800";
+          criteria = "Nreal Air 2 Pro 0x88888800";
           mode = "1920x1080@120Hz";
           scale = 1.5;
           position = "0,0";
