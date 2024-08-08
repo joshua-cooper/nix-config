@@ -97,6 +97,8 @@
 
   services.dbus.packages = [ pkgs.gcr ];
 
+  services.fwupd.enable = true;
+
   state.enable = true;
 
   virtualisation.podman.enable = true;
